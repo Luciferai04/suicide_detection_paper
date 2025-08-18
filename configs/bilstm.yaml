@@ -1,0 +1,19 @@
+model: bilstm
+bilstm:
+  vocab_size: 50000
+  embedding_dim: 200
+  hidden_dim: 128
+  num_layers: 1
+  bidirectional: true
+  dropout: 0.3
+  attention: true
+  max_len: 256
+  optimizer: adamw
+  learning_rate: 2e-4
+  weight_decay: 0.01
+  batch_size: 64
+  num_epochs: 15
+  early_stopping_patience: 3
+  class_weights: true
+  focal_loss: false
+

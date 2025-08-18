@@ -1,0 +1,31 @@
+seed: 42
+paths:
+  project_root: .
+  data_dir: data
+  raw_dir: data/raw
+  processed_dir: data/processed
+  splits_dir: data/splits
+  results_dir: results
+  artifacts_dir: results/model_outputs
+  mlruns_dir: mlruns
+
+logging:
+  level: INFO
+  log_to_file: true
+  file_path: results/project.log
+
+evaluation:
+  use_stratified_kfold: true
+  n_splits: 5
+  random_state: 42
+  clinical_costs:
+    false_negative: 5.0
+    false_positive: 1.0
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1
+    - roc_auc
+    - pr_auc
+

@@ -1,0 +1,8 @@
+enabled: false
+sensitive_groups: []
+metrics:
+  - demographic_parity
+  - equal_opportunity
+  - equalized_odds
+report_path: ethics/bias_audit_reports/latest_report.md
+

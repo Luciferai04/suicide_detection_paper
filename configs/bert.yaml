@@ -1,0 +1,18 @@
+model: bert
+bert:
+  model_name: "mental/mental-bert-base-uncased"
+  alt_models:
+    - "roberta-base"
+  max_len: 256
+  learning_rate: 2e-5
+  weight_decay: 0.01
+  batch_size: 16
+  num_epochs: 4
+  warmup_ratio: 0.1
+  gradient_accumulation_steps: 1
+  fp16: false
+  early_stopping_patience: 2
+  freeze_embeddings: false
+  class_weights: true
+  focal_loss: false
+
