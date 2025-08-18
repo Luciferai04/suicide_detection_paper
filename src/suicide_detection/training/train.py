@@ -15,10 +15,12 @@ from transformers import Trainer, TrainingArguments, EarlyStoppingCallback
 from suicide_detection.utils.seed import set_global_seed
 from suicide_detection.utils.logging import get_logger
 from suicide_detection.data_processing.load import load_dataset_secure
+from suicide_detection.data_processing.splitting import temporal_split
 from suicide_detection.models.svm_baseline import SVMBaseline
 from suicide_detection.models.bilstm_attention import BiLSTMAttention, BiLSTMAttentionConfig
 from suicide_detection.models.bert_model import build_model_and_tokenizer, TextDataset
 from suicide_detection.evaluation.metrics import compute_metrics
+from suicide_detection.evaluation.plots import save_curves, save_confusion
 
 
 def device_auto() -> torch.device:
@@ -29,7 +31,20 @@ def device_auto() -> torch.device:
     return torch.device("cpu")
 
 
-def prepare_splits(df: pd.DataFrame, test_size: float = 0.15, val_size: float = 0.15, random_state: int = 42):
+def prepare_splits(
+    df: pd.DataFrame,
+    test_size: float = 0.15,
+    val_size: float = 0.15,
+    random_state: int = 42,
+    temporal: bool = False,
+    timestamp_col: str = "",
+):
+    if temporal and timestamp_col and timestamp_col in df.columns:
+        train_df, val_df, test_df = temporal_split(df, timestamp_col, test_size=test_size, val_size=val_size)
+        return (train_df["text"].values, train_df["label"].values), (
+            val_df["text"].values,
+            val_df["label"].values,
+        ), (test_df["text"].values, test_df["label"].values)
     X_trainval, X_test, y_trainval, y_test = train_test_split(
         df["text"].values,
         df["label"].values,
@@ -65,12 +80,15 @@ def run_svm(train, val, test, output_dir: Path, logger):
 
     for split_name, X, y in [("val", X_val, y_val), ("test", X_test, y_test)]:
         y_prob = best.predict_proba(X)[:, 1]
+        y_pred = (y_prob >= 0.5).astype(int)
         res = compute_metrics(y, y_prob)
         logger.info(f"SVM {split_name} metrics: {res}")
         out = output_dir / f"svm_{split_name}_metrics.json"
         out.parent.mkdir(parents=True, exist_ok=True)
         with open(out, "w") as f:
             json.dump(res.__dict__, f, indent=2)
+        save_curves(y, y_prob, output_dir, f"svm_{split_name}")
+        save_confusion(y, y_pred, output_dir, f"svm_{split_name}")
 
 
 def run_bilstm(train, val, test, output_dir: Path, logger, max_len: int = 256):
@@ -167,6 +185,27 @@ def run_bilstm(train, val, test, output_dir: Path, logger, max_len: int = 256):
     # Final eval
     res_val = evaluate(val_loader)
     res_test = evaluate(test_loader)
+    # Save plots
+    # For plots we need probabilities and predictions from loaders again
+    def collect(loader):
+        ys, ps = [], []
+        with torch.no_grad():
+            for ids, attn, labels in loader:
+                ids, attn = ids.to(device), attn.to(device)
+                logits = model(ids, attn)
+                prob = torch.softmax(logits, dim=-1)[:,1]
+                ys.append(labels)
+                ps.append(prob.cpu())
+        y_true = torch.cat(ys).numpy()
+        y_prob = torch.cat(ps).numpy()
+        return y_true, y_prob
+    yv, pv = collect(val_loader)
+    yt, pt = collect(test_loader)
+    save_curves(yv, pv, output_dir, "bilstm_val")
+    save_confusion(yv, (pv>=0.5).astype(int), output_dir, "bilstm_val")
+    save_curves(yt, pt, output_dir, "bilstm_test")
+    save_confusion(yt, (pt>=0.5).astype(int), output_dir, "bilstm_test")
+
     for split, res in [("val", res_val), ("test", res_test)]:
         with open(output_dir / f"bilstm_{split}_metrics.json", "w") as f:
             json.dump(res.__dict__, f, indent=2)
@@ -234,6 +273,15 @@ def run_bert(train, val, test, output_dir: Path, logger, model_name: str = "ment
     with open(output_dir / "bert_test_metrics.json", "w") as f:
         json.dump(res_test.__dict__, f, indent=2)
 
+    # Plots for BERT
+    y_val_prob = trainer.predict(val_ds).predictions
+    y_val_prob = torch.softmax(torch.tensor(y_val_prob), dim=-1)[:,1].numpy()
+    y_val_true = np.array(y_val)
+    save_curves(y_val_true, y_val_prob, output_dir, "bert_val")
+    save_confusion(y_val_true, (y_val_prob>=0.5).astype(int), output_dir, "bert_val")
+    save_curves(np.array(y_test), y_prob, output_dir, "bert_test")
+    save_confusion(np.array(y_test), (y_prob>=0.5).astype(int), output_dir, "bert_test")
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -245,6 +293,8 @@ def main():
     ap.add_argument("--output_dir", default="results/model_outputs")
     ap.add_argument("--config", default=None)
     ap.add_argument("--default_config", default=None)
+    ap.add_argument("--temporal_split", action="store_true")
+    ap.add_argument("--timestamp_col", default="")
     args = ap.parse_args()
 
     logger = get_logger("train")
@@ -267,7 +317,11 @@ def main():
         val = (val_df["text"].values, val_df["label"].values)
         test = (test_df["text"].values, test_df["label"].values)
     else:
-        train, val, test = prepare_splits(df)
+        train, val, test = prepare_splits(
+            df,
+            temporal=args.temporal_split,
+            timestamp_col=args.timestamp_col,
+        )
 
     output_dir = Path(args.output_dir)
 

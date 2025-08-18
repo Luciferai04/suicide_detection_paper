@@ -16,7 +16,7 @@ class TfidfFeatures:
     word_ngram: Tuple[int, int] = (1, 3)
     char_ngram: Tuple[int, int] = (3, 5)
     max_features: int = 200_000
-    min_df: int = 2
+    min_df: int = 1
     sublinear_tf: bool = True
 
     def build(self) -> FeatureUnion:

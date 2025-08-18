@@ -4,8 +4,9 @@ from typing import Any, Dict, Tuple
 import numpy as np
 from sklearn.metrics import classification_report
 from sklearn.model_selection import GridSearchCV
-from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
+from imblearn.pipeline import Pipeline
+from imblearn.over_sampling import SMOTE
 
 from ..features.tfidf_features import TfidfFeatures
 
@@ -23,7 +24,8 @@ class SVMBaseline:
     def build(self) -> Pipeline:
         features = TfidfFeatures().build()
         svm = SVC(kernel="rbf", probability=True)
-        pipe = Pipeline([("features", features), ("clf", svm)])
+        # SMOTE inside the pipeline ensures resampling is done only on training folds during CV
+        pipe = Pipeline([("features", features), ("smote", SMOTE(random_state=42)), ("clf", svm)])
         return pipe
 
     def tune(self, X: np.ndarray, y: np.ndarray) -> GridSearchCV:

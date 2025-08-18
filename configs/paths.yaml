@@ -1,0 +1,14 @@
+enabled: true
+project_name: suicide_detection
+mlflow:
+  tracking_uri: file:./mlruns
+  experiment: suicide_detection_research
+splits:
+  strategy: stratified
+  test_size: 0.15
+  val_size: 0.15
+temporal:
+  enabled: false
+  timestamp_col: created_utc
+  ascending: true
+

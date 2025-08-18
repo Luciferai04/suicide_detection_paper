@@ -13,7 +13,7 @@ accelerate
 datasets
 mlflow
 hydra-core
-yaml
+PyYAML
 omegaconf
 pydantic
 fastapi
@@ -28,4 +28,5 @@ ruff
 mypy
 pre-commit
 statsmodels
+dvc
 

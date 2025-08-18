@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: suicide-detection-research
+Version: 0.1.0
+Summary: Research code for suicide risk detection with SVM, BiLSTM, and BERT.
+Requires-Python: >=3.9
+License-File: LICENSE
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary

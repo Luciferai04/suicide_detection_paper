@@ -1,0 +1,5 @@
+enabled: true
+experiment_name: "suicide_detection_research"
+tracking_uri: "file:./mlruns"
+artifacts_path: "mlruns"
+
