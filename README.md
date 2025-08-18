@@ -28,8 +28,11 @@ Ethics and safety (critical)
 Quick start
 1) Create and activate a Python 3.10 virtual environment.
 2) Install dependencies with pip using requirements.txt.
-3) Place your dataset files in data/raw (we do not fetch datasets automatically).
-4) Run preprocessing and then train models via scripts in scripts/.
+3) Datasets (ethics-first; no synthetic data generated):
+   - Kaggle SuicideWatch: set Kaggle API creds, then run scripts/download_kaggle.py and scripts/prepare_kaggle.py
+   - Mendeley datasets: run scripts/download_mendeley.py (or download manually), then scripts/prepare_mendeley.py
+   - MentalLLaMA: run scripts/clone_mentallama.py (optional; not used for classification directly)
+4) Train models via scripts/ (uses data/splits if present, or data/raw/dataset.csv by default).
 
 Disclaimer: This project is for research purposes only and is not a diagnostic tool.
 

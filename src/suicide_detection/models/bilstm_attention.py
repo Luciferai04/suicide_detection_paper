@@ -53,12 +53,14 @@ class BiLSTMAttention(nn.Module):
         out_dim = cfg.hidden_dim * (2 if cfg.bidirectional else 1)
         self.dropout = nn.Dropout(cfg.dropout)
         self.fc = nn.Linear(out_dim, cfg.num_classes)
+        self.last_attn: Optional[torch.Tensor] = None
 
     def forward(self, input_ids: torch.Tensor, attention_mask: Optional[torch.Tensor] = None) -> torch.Tensor:
         # input_ids: (batch, seq)
         x = self.embedding(input_ids)
         outputs, _ = self.lstm(x)
-        context, _ = self.attn(outputs, mask=attention_mask)
+        context, attn_w = self.attn(outputs, mask=attention_mask)
+        self.last_attn = attn_w.detach() if isinstance(attn_w, torch.Tensor) else None
         logits = self.fc(self.dropout(context))
         return logits
 

@@ -2,6 +2,8 @@ from pathlib import Path
 import argparse
 import json
 from typing import Dict, Any
+import yaml
+import mlflow
 
 import numpy as np
 import pandas as pd
@@ -77,6 +79,36 @@ def run_svm(train, val, test, output_dir: Path, logger):
     gs = model.tune(X_train, y_train)
     best = gs.best_estimator_
     logger.info(f"Best params: {gs.best_params_}")
+
+    # Post-hoc interpretability: train linear SVM on fixed TF-IDF features to extract feature importances
+    try:
+        from sklearn.svm import LinearSVC
+        import numpy as np
+        features = best.named_steps["features"]
+        X_train_vec = features.transform(X_train)
+        lin = LinearSVC(class_weight="balanced")
+        lin.fit(X_train_vec, y_train)
+        # Map feature weights to n-grams
+        feat_names = []
+        # Attempt to get names from FeatureUnion
+        if hasattr(features, "get_feature_names_out"):
+            feat_names = features.get_feature_names_out()
+        else:
+            feat_names = np.array([f"f_{i}" for i in range(X_train_vec.shape[1])])
+        coefs = lin.coef_.ravel()
+        order_pos = np.argsort(-coefs)[:50]
+        order_neg = np.argsort(coefs)[:50]
+        rows = [(feat_names[i], float(coefs[i]), "positive") for i in order_pos]
+        rows += [(feat_names[i], float(coefs[i]), "negative") for i in order_neg]
+        out_fp = output_dir / "svm_feature_importance.csv"
+        out_fp.parent.mkdir(parents=True, exist_ok=True)
+        with open(out_fp, "w") as f:
+            f.write("feature,weight,polarity\n")
+            for name, w, pol in rows:
+                f.write(f"{name},{w},{pol}\n")
+        logger.info(f"Saved feature importance to {out_fp}")
+    except Exception as e:
+        logger.warning(f"Feature importance extraction failed: {e}")
 
     for split_name, X, y in [("val", X_val, y_val), ("test", X_test, y_test)]:
         y_prob = best.predict_proba(X)[:, 1]
@@ -300,6 +332,20 @@ def main():
     logger = get_logger("train")
     set_global_seed(42)
 
+    # Optional MLflow setup
+    mlflow_cfg_path = Path("configs/mlflow.yaml")
+    ml_enabled = False
+    if mlflow_cfg_path.exists():
+        try:
+            cfg = yaml.safe_load(mlflow_cfg_path.read_text())
+            ml_enabled = cfg.get("enabled", False)
+            if ml_enabled:
+                tracking_uri = cfg.get("tracking_uri", "file:./mlruns")
+                mlflow.set_tracking_uri(tracking_uri)
+                mlflow.set_experiment(cfg.get("experiment_name", "suicide_detection_research"))
+        except Exception as e:
+            logger.warning(f"Failed to read MLflow config: {e}")
+
     data_path = Path(args.data_path)
     df = load_dataset_secure(data_path)
 
@@ -325,12 +371,52 @@ def main():
 
     output_dir = Path(args.output_dir)
 
-    if args.model == "svm":
-        run_svm(train, val, test, output_dir, logger)
-    elif args.model == "bilstm":
-        run_bilstm(train, val, test, output_dir, logger)
-    elif args.model == "bert":
-        run_bert(train, val, test, output_dir, logger)
+    if ml_enabled:
+        with mlflow.start_run(run_name=args.model):
+            mlflow.log_params({"model": args.model})
+            if args.temporal_split:
+                mlflow.log_param("temporal_split", True)
+                mlflow.log_param("timestamp_col", args.timestamp_col)
+            # Execute training and log metrics after each split
+            if args.model == "svm":
+                run_svm(train, val, test, output_dir, logger)
+                # Log metrics if produced
+                for split in ["val", "test"]:
+                    fp = output_dir / f"svm_{split}_metrics.json"
+                    if fp.exists():
+                        import json as _json
+                        m = _json.loads(fp.read_text())
+                        for k, v in m.items():
+                            if isinstance(v, (int, float)):
+                                mlflow.log_metric(f"{split}_{k}", float(v))
+            elif args.model == "bilstm":
+                run_bilstm(train, val, test, output_dir, logger)
+                for split in ["val", "test"]:
+                    fp = output_dir / f"bilstm_{split}_metrics.json"
+                    if fp.exists():
+                        import json as _json
+                        m = _json.loads(fp.read_text())
+                        for k, v in m.items():
+                            if isinstance(v, (int, float)):
+                                mlflow.log_metric(f"{split}_{k}", float(v))
+            elif args.model == "bert":
+                run_bert(train, val, test, output_dir, logger)
+                for split in ["val", "test"]:
+                    fp = output_dir / f"bert_{split}_metrics.json"
+                    if fp.exists():
+                        import json as _json
+                        m = _json.loads(fp.read_text())
+                        # HuggingFace eval writes keys differently; log standard ones if present
+                        for k, v in (m.items() if isinstance(m, dict) else []):
+                            if isinstance(v, (int, float)):
+                                mlflow.log_metric(f"{split}_{k}", float(v))
+    else:
+        if args.model == "svm":
+            run_svm(train, val, test, output_dir, logger)
+        elif args.model == "bilstm":
+            run_bilstm(train, val, test, output_dir, logger)
+        elif args.model == "bert":
+            run_bert(train, val, test, output_dir, logger)
 
 
 if __name__ == "__main__":
