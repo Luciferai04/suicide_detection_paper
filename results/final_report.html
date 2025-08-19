@@ -1,0 +1,116 @@
+<html><head><title>Suicide Detection Research Report</title></head><body>
+<h1>Suicide Detection Research - Model Comparison</h1>
+<p><em>Sensitive research content. For IRB-approved research only.</em></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>model</th>
+      <th>split</th>
+      <th>accuracy</th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1</th>
+      <th>roc_auc</th>
+      <th>pr_auc</th>
+      <th>cost_weighted_accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>svm</td>
+      <td>val</td>
+      <td>0.5000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.5000</td>
+      <td>0.5000</td>
+      <td>-2.0000</td>
+    </tr>
+    <tr>
+      <td>svm</td>
+      <td>test</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>NaN</td>
+      <td>1.0000</td>
+      <td>-5.0000</td>
+    </tr>
+    <tr>
+      <td>bilstm</td>
+      <td>val</td>
+      <td>0.5000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.5000</td>
+      <td>-2.0000</td>
+    </tr>
+    <tr>
+      <td>bilstm</td>
+      <td>test</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>NaN</td>
+      <td>1.0000</td>
+      <td>-5.0000</td>
+    </tr>
+    <tr>
+      <td>bert</td>
+      <td>val</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>bert</td>
+      <td>test</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>NaN</td>
+      <td>1.0000</td>
+      <td>-5.0000</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Fairness (if provided)</h2>
+<p>No demographic group data was provided; fairness analysis not performed.</p>
+<h2>Figures</h2>
+<div><img src='results/model_outputs/svm_ci/svm_test_roc.png' style='max-width:720px'><p>results/model_outputs/svm_ci/svm_test_roc.png</p></div>
+<div><img src='results/model_outputs/svm_ci/svm_val_pr.png' style='max-width:720px'><p>results/model_outputs/svm_ci/svm_val_pr.png</p></div>
+<div><img src='results/model_outputs/svm_ci/svm_test_pr.png' style='max-width:720px'><p>results/model_outputs/svm_ci/svm_test_pr.png</p></div>
+<div><img src='results/model_outputs/svm_ci/svm_test_confusion.png' style='max-width:720px'><p>results/model_outputs/svm_ci/svm_test_confusion.png</p></div>
+<div><img src='results/model_outputs/svm_ci/svm_val_roc.png' style='max-width:720px'><p>results/model_outputs/svm_ci/svm_val_roc.png</p></div>
+<div><img src='results/model_outputs/svm_ci/svm_val_confusion.png' style='max-width:720px'><p>results/model_outputs/svm_ci/svm_val_confusion.png</p></div>
+<div><img src='results/model_outputs/svm/svm_test_roc.png' style='max-width:720px'><p>results/model_outputs/svm/svm_test_roc.png</p></div>
+<div><img src='results/model_outputs/svm/svm_val_pr.png' style='max-width:720px'><p>results/model_outputs/svm/svm_val_pr.png</p></div>
+<div><img src='results/model_outputs/svm/svm_test_pr.png' style='max-width:720px'><p>results/model_outputs/svm/svm_test_pr.png</p></div>
+<div><img src='results/model_outputs/svm/svm_test_confusion.png' style='max-width:720px'><p>results/model_outputs/svm/svm_test_confusion.png</p></div>
+<div><img src='results/model_outputs/svm/svm_val_roc.png' style='max-width:720px'><p>results/model_outputs/svm/svm_val_roc.png</p></div>
+<div><img src='results/model_outputs/svm/svm_val_confusion.png' style='max-width:720px'><p>results/model_outputs/svm/svm_val_confusion.png</p></div>
+<div><img src='results/model_outputs/bert/bert_test_pr.png' style='max-width:720px'><p>results/model_outputs/bert/bert_test_pr.png</p></div>
+<div><img src='results/model_outputs/bert/bert_test_confusion.png' style='max-width:720px'><p>results/model_outputs/bert/bert_test_confusion.png</p></div>
+<div><img src='results/model_outputs/bert/bert_test_roc.png' style='max-width:720px'><p>results/model_outputs/bert/bert_test_roc.png</p></div>
+<div><img src='results/model_outputs/bert/bert_val_roc.png' style='max-width:720px'><p>results/model_outputs/bert/bert_val_roc.png</p></div>
+<div><img src='results/model_outputs/bert/bert_val_pr.png' style='max-width:720px'><p>results/model_outputs/bert/bert_val_pr.png</p></div>
+<div><img src='results/model_outputs/bert/bert_val_confusion.png' style='max-width:720px'><p>results/model_outputs/bert/bert_val_confusion.png</p></div>
+<div><img src='results/model_outputs/bilstm/bilstm_test_pr.png' style='max-width:720px'><p>results/model_outputs/bilstm/bilstm_test_pr.png</p></div>
+<div><img src='results/model_outputs/bilstm/bilstm_val_roc.png' style='max-width:720px'><p>results/model_outputs/bilstm/bilstm_val_roc.png</p></div>
+<div><img src='results/model_outputs/bilstm/bilstm_val_pr.png' style='max-width:720px'><p>results/model_outputs/bilstm/bilstm_val_pr.png</p></div>
+<div><img src='results/model_outputs/bilstm/bilstm_test_confusion.png' style='max-width:720px'><p>results/model_outputs/bilstm/bilstm_test_confusion.png</p></div>
+<div><img src='results/model_outputs/bilstm/bilstm_test_roc.png' style='max-width:720px'><p>results/model_outputs/bilstm/bilstm_test_roc.png</p></div>
+<div><img src='results/model_outputs/bilstm/bilstm_val_confusion.png' style='max-width:720px'><p>results/model_outputs/bilstm/bilstm_val_confusion.png</p></div>
+<div><img src='results/model_outputs/bilstm/attention/val_attn_1.png' style='max-width:720px'><p>results/model_outputs/bilstm/attention/val_attn_1.png</p></div>
+<div><img src='results/model_outputs/bilstm/attention/val_attn_0.png' style='max-width:720px'><p>results/model_outputs/bilstm/attention/val_attn_0.png</p></div>
+</body></html>
