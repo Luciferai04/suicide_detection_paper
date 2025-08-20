@@ -19,15 +19,80 @@ A comprehensive research implementation comparing three model families for suici
 
 This project prioritizes **clinical-focused evaluation**, **ethical safeguards**, and **reproducible research** with configs, tracking, and comprehensive documentation.
 
-##  System Architecture
+## System Architecture
 
 Our pipeline follows an ethics-first design with multiple safeguards:
 
-```
-Data Sources ➜ Anonymization ➜ Multi-Model Training ➜ Evaluation & Auditing ➜ Research Outputs
-     │                │              │                      │                      │
- Kaggle/Reddit    PII Removal    SVM/BiLSTM/BERT     Statistical Tests      Reports/Figures
- Mendeley Data    Text Cleaning   Attention Vis.     Fairness Audits       Paper Outputs
+```mermaid
+flowchart TD
+    A[Data Sources] --> B[Data Ingestion & ETL]
+    B --> C[Privacy Protection]
+    C --> D[Multi-Model Training]
+    D --> E[Evaluation & Analysis]
+    E --> F[Research Outputs]
+    
+    A1[Kaggle SuicideWatch] --> A
+    A2[Reddit Posts] --> A
+    A3[Mendeley Datasets] --> A
+    A4[MentalLLaMA Reference] --> A
+    
+    B --> B1[Data Validation]
+    B --> B2[Format Standardization]
+    B --> B3[Quality Checks]
+    
+    C --> C1[PII Removal]
+    C --> C2[Text Anonymization]
+    C --> C3[Secure Storage]
+    C --> C4[IRB Compliance]
+    
+    D --> D1[SVM + TF-IDF Baseline]
+    D --> D2[BiLSTM + Attention]
+    D --> D3[BERT Fine-tuning]
+    
+    D1 --> D1A[Grid Search]
+    D1 --> D1B[SMOTE Balancing]
+    D2 --> D2A[Word Embeddings]
+    D2 --> D2B[Attention Visualization]
+    D3 --> D3A[Transformer Fine-tuning]
+    D3 --> D3B[GPU Optimization]
+    
+    E --> E1[Performance Metrics]
+    E --> E2[Statistical Testing]
+    E --> E3[Fairness Auditing]
+    E --> E4[Clinical Validation]
+    
+    E1 --> E1A[ROC/PR Curves]
+    E1 --> E1B[Confusion Matrices]
+    E2 --> E2A[McNemar Test]
+    E2 --> E2B[Bootstrap CI]
+    E3 --> E3A[Demographic Parity]
+    E3 --> E3B[Equalized Opportunity]
+    
+    F --> F1[HTML Reports]
+    F --> F2[Research Paper]
+    F --> F3[Visualization Gallery]
+    F --> F4[Model Artifacts]
+    
+    G[Human Oversight] -.-> C
+    G -.-> D
+    G -.-> E
+    G --> G1[Ethics Review]
+    G --> G2[Clinical Input]
+    G --> G3[Bias Monitoring]
+    
+    H[Quality Assurance] -.-> D
+    H -.-> E
+    H --> H1[Automated Testing]
+    H --> H2[CI/CD Pipeline]
+    H --> H3[Code Quality]
+    
+    style A fill:#e1f5fe
+    style C fill:#fff3e0
+    style D fill:#f3e5f5
+    style E fill:#e8f5e8
+    style F fill:#fce4ec
+    style G fill:#fff8e1
+    style H fill:#f1f8e9
 ```
 
 ### Key Components
