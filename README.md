@@ -5,12 +5,12 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Research](https://img.shields.io/badge/research-ethics%20first-orange)](ethics/README.md)
 
-> **⚠️ SENSITIVE RESEARCH CONTENT NOTICE**  
+> **WARNING: SENSITIVE RESEARCH CONTENT NOTICE**  
 > This repository contains code for research into suicide risk detection using social media text. It must be used responsibly and ethically. **Do not deploy this code in clinical or production settings** without IRB approval, licensed clinician oversight, rigorous validation, and compliance with all applicable laws and policies.
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 A comprehensive research implementation comparing three model families for suicide risk detection:
 - **TF-IDF + SVM baseline** with hyperparameter optimization
@@ -19,7 +19,7 @@ A comprehensive research implementation comparing three model families for suici
 
 This project prioritizes **clinical-focused evaluation**, **ethical safeguards**, and **reproducible research** with configs, tracking, and comprehensive documentation.
 
-## 🏗️ System Architecture
+##  System Architecture
 
 Our pipeline follows an ethics-first design with multiple safeguards:
 
@@ -32,12 +32,12 @@ Data Sources ➜ Anonymization ➜ Multi-Model Training ➜ Evaluation & Auditin
 
 ### Key Components
 
-- **🔒 Privacy Protection**: Anonymization, PII removal, secure storage
-- **⚖️ Bias Auditing**: Demographic parity, fairness metrics, human review
-- **📊 Clinical Metrics**: ROC/PR curves, confusion matrices, statistical significance  
-- **🔄 Reproducibility**: MLflow tracking, DVC versioning, automated CI/CD
+- **Privacy Protection**: Anonymization, PII removal, secure storage
+- **Bias Auditing**: Demographic parity, fairness metrics, human review
+- **Clinical Metrics**: ROC/PR curves, confusion matrices, statistical significance  
+- **Reproducibility**: MLflow tracking, DVC versioning, automated CI/CD
 
-## 📈 Model Performance Results
+## Model Performance Results
 
 ### Performance Summary
 
@@ -133,7 +133,7 @@ Data Sources ➜ Anonymization ➜ Multi-Model Training ➜ Evaluation & Auditin
 
 *Demographic parity and equalized opportunity metrics across protected attributes*
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -161,7 +161,7 @@ pip install -e .
 
 ### Dataset Setup (Ethics-First)
 
-**⚠️ IMPORTANT**: Never generate or simulate synthetic suicide-related data.
+**WARNING: IMPORTANT**: Never generate or simulate synthetic suicide-related data.
 
 ```bash
 # Option 1: Kaggle dataset (requires API key)
@@ -209,14 +209,14 @@ python scripts/bias_audit.py
 python scripts/generate_charts.py
 ```
 
-## 📊 Research Outputs
+## Research Outputs
 
-- **📄 [Final Report](results/final_report.html)**: Comprehensive HTML report with all metrics
-- **📈 [Model Comparison CSV](results/comparison_tables/model_comparison.csv)**: Tabular performance data
-- **🖼️ [Visualization Gallery](docs/figures/)**: All plots and figures
-- **📑 [Research Paper](paper/suicide_detection_paper.pdf)**: Academic manuscript (LaTeX source included)
+- **[Final Report](results/final_report.html)**: Comprehensive HTML report with all metrics
+- **[Model Comparison CSV](results/comparison_tables/model_comparison.csv)**: Tabular performance data
+- **[Visualization Gallery](docs/figures/)**: All plots and figures
+- **[Research Paper](paper/suicide_detection_paper.pdf)**: Academic manuscript (LaTeX source included)
 
-## 🔬 Methodology
+## Methodology
 
 ### Data Processing Pipeline
 
@@ -253,7 +253,7 @@ python scripts/generate_charts.py
 - **Fairness Auditing**: Demographic parity, equalized opportunity
 - **Interpretability**: Attention visualizations, feature importance
 
-## 🛠️ Repository Structure
+## Repository Structure
 
 ```
 suicide_detection/
@@ -280,7 +280,7 @@ suicide_detection/
 └── docs/                       # Documentation and architecture
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 Models are configured via YAML files in `configs/`:
 
@@ -303,7 +303,7 @@ data:
   test_path: "data/processed/test.csv"
 ```
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -315,16 +315,16 @@ pytest tests/test_models_smoke.py -v  # Model smoke tests
 pytest tests/test_anonymizer.py -v    # Privacy protection tests
 ```
 
-## 🚨 Ethics & Safety
+## Ethics & Safety
 
 ### Critical Guidelines
 
-- ❌ **Never generate synthetic suicide-related data**
-- ✅ **Perform thorough anonymization before modeling**
-- ✅ **Include human-in-the-loop review checkpoints** 
-- ✅ **Run bias detection and mitigation**
-- ✅ **Document all assumptions and limitations**
-- ✅ **Prioritize sensitivity over specificity for high-risk cases**
+- **Never generate synthetic suicide-related data**
+- **Perform thorough anonymization before modeling**
+- **Include human-in-the-loop review checkpoints** 
+- **Run bias detection and mitigation**
+- **Document all assumptions and limitations**
+- **Prioritize sensitivity over specificity for high-risk cases**
 
 ### IRB & Legal Compliance
 
@@ -334,7 +334,7 @@ pytest tests/test_anonymizer.py -v    # Privacy protection tests
 - Include licensed clinician oversight for any clinical applications
 - See [ethics/README.md](ethics/README.md) for detailed guidelines
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions that advance responsible AI in mental health research:
 
@@ -345,7 +345,7 @@ We welcome contributions that advance responsible AI in mental health research:
 5. **Include tests and documentation**
 6. **Run pre-commit hooks**: `black`, `ruff`, `pytest`
 
-## 📜 Limitations
+## Limitations
 
 ### Current Model Performance
 
@@ -360,14 +360,14 @@ The models show limited performance on the current dataset, which is common in m
 
 This is a **research implementation** for academic study, not a production system:
 
-- ❌ Not validated for clinical use
-- ❌ Not deployed in real-world settings
-- ❌ Not a diagnostic tool
-- ✅ For research methodology development
-- ✅ For ethics and bias study
-- ✅ For reproducibility benchmarks
+- Not validated for clinical use
+- Not deployed in real-world settings
+- Not a diagnostic tool
+- For research methodology development
+- For ethics and bias study
+- For reproducibility benchmarks
 
-## 📚 Citation
+## Citation
 
 If you use this code in your research, please cite:
 
@@ -381,7 +381,7 @@ If you use this code in your research, please cite:
 }
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -391,7 +391,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Compliance with local mental health and privacy regulations
 - No commercial deployment without extensive validation
 
-## 🆘 Resources & Support
+## Resources & Support
 
 ### Crisis Resources
 - **National Suicide Prevention Lifeline**: 988 (US)
