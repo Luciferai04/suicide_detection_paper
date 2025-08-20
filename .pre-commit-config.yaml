@@ -14,3 +14,10 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies: [types-PyYAML]
+  - repo: https://github.com/jazzband/pip-tools
+    rev: 7.4.1
+    hooks:
+      - id: pip-compile
+        name: pip-compile (requirements.lock.txt)
+        args: ["--quiet","--generate-hashes","--output-file","requirements.lock.txt","requirements.in"]
+        files: ^requirements\.in$
