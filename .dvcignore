@@ -1,0 +1,7 @@
+# Ignore temporary or large files not tracked by DVC
+**/.DS_Store
+**/__pycache__/
+**/*.ipynb_checkpoints/
+results/**/*.png
+results/**/*.pt
+mlruns/

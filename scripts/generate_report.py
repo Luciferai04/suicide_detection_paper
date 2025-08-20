@@ -32,17 +32,40 @@ def load_metrics() -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def _load_fairness() -> pd.DataFrame:
+    rows = []
+    for model in ["svm", "bilstm", "bert"]:
+        for split in ["val", "test"]:
+            fp = MODEL_DIR / model / f"{model}_{split}_fairness.json"
+            if fp.exists():
+                try:
+                    obj = json.loads(fp.read_text())
+                    for g, vals in obj.items():
+                        rows.append({"model": model, "split": split, "group": g, **vals})
+                except Exception:
+                    continue
+    return pd.DataFrame(rows)
+
+
 def render_report(df: pd.DataFrame) -> str:
     if df.empty:
         return "<html><body><h2>No metrics found. Run training scripts first.</h2></body></html>"
-    # Simple HTML summary
+    # Limit to main metrics and include cost-weighted accuracy if present
+    metric_cols = [c for c in ["model","split","accuracy","precision","recall","f1","roc_auc","pr_auc","cost_weighted_accuracy"] if c in df.columns]
     parts = [
         "<html><head><title>Suicide Detection Research Report</title></head><body>",
         "<h1>Suicide Detection Research - Model Comparison</h1>",
         "<p><em>Sensitive research content. For IRB-approved research only.</em></p>",
-        df.to_html(index=False, float_format=lambda x: f"{x:.4f}"),
-        "<h2>Figures</h2>",
+        df[metric_cols].to_html(index=False, float_format=lambda x: f"{x:.4f}"),
+        "<h2>Fairness (if provided)</h2>",
     ]
+    fdf = _load_fairness()
+    if not fdf.empty:
+        parts.append(fdf.to_html(index=False, float_format=lambda x: f"{x:.4f}"))
+    else:
+        parts.append("<p>No demographic group data was provided; fairness analysis not performed.</p>")
+
+    parts.append("<h2>Figures</h2>")
     # Attach available plots
     figs = list((OUT_DIR / "visualizations").glob("*.png")) + list((MODEL_DIR).glob("**/*.png"))
     for fig in figs:

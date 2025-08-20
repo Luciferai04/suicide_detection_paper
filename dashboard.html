@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MPS Training Dashboard</title>
+    <meta http-equiv="refresh" content="5">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .models {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        .model-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: #333;
+        }
+        .model-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .model-name {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        .status.training { background: #fbbf24; color: white; }
+        .status.completed { background: #10b981; color: white; }
+        .status.initializing { background: #6b7280; color: white; }
+        .status.error { background: #ef4444; color: white; }
+        .progress-bar {
+            background: #e5e7eb;
+            border-radius: 10px;
+            height: 30px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: width 0.5s ease;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .metric {
+            background: #f3f4f6;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .metric-label {
+            font-size: 0.85em;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+        .metric-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1f2937;
+        }
+        .timestamp {
+            text-align: center;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+        .alert {
+            background: #fef2f2;
+            border: 2px solid #ef4444;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 MPS Training Dashboard</h1>
+<div class="models">
+        <div class="model-card">
+            <div class="model-header">
+                <div class="model-name">BERT</div>
+                <div class="status training">TRAINING</div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 87%">
+                    87%
+                </div>
+            </div>
+            
+            <div class="metrics">
+
+                <div class="metric">
+                    <div class="metric-label">Speed</div>
+                    <div class="metric-value">3.86 it/s</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Avg Speed</div>
+                    <div class="metric-value">3.76 it/s</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="model-header">
+                <div class="model-name">BILSTM</div>
+                <div class="status initializing">INITIALIZING</div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%">
+                    0%
+                </div>
+            </div>
+            
+            <div class="metrics">
+
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="model-header">
+                <div class="model-name">SVM</div>
+                <div class="status initializing">INITIALIZING</div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%">
+                    0%
+                </div>
+            </div>
+            
+            <div class="metrics">
+
+            </div>
+        </div>
+</div>
+        <div class="timestamp">
+            Last updated: 2025-08-20 02:33:56
+        </div>
+    </div>
+</body>
+</html>

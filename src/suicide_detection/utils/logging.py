@@ -3,7 +3,9 @@ from pathlib import Path
 from typing import Optional
 
 
-def get_logger(name: Optional[str] = None, log_file: Optional[Path] = None, level: int = logging.INFO) -> logging.Logger:
+def get_logger(
+    name: Optional[str] = None, log_file: Optional[Path] = None, level: int = logging.INFO
+) -> logging.Logger:
     """Create and configure a logger with console and optional file handlers.
 
     Args:
@@ -32,4 +34,3 @@ def get_logger(name: Optional[str] = None, log_file: Optional[Path] = None, leve
             logger.addHandler(fh)
 
     return logger
-

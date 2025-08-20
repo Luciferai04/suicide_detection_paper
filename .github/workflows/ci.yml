@@ -34,4 +34,26 @@ jobs:
         run: |
           . .venv/bin/activate
           pytest -q
+      - name: Smoke preprocess
+        run: |
+          . .venv/bin/activate
+          python scripts/preprocess.py --input data/sample/sample.csv --output data/processed/dataset.csv
+      - name: Smoke train SVM
+        env:
+          DISABLE_GRID: "1"
+        run: |
+          . .venv/bin/activate
+          python -m suicide_detection.training.train --model svm --data_path data/processed/dataset.csv --output_dir results/model_outputs/svm_ci
+      - name: Generate report
+        run: |
+          . .venv/bin/activate
+          python scripts/generate_report.py
+      - name: Upload report and plots
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-artifacts
+          path: |
+            results/final_report.html
+            results/**/*.png
+            results/model_outputs/**/*.json
 

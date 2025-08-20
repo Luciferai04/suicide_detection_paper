@@ -1,5 +1,4 @@
 import re
-from typing import Callable
 
 # Basic normalization: remove Reddit mentions /u/ and subreddits /r/, markdown links, normalize elongations
 USER_MENTION = re.compile(r"(?i)\b/u/\w+")
@@ -12,6 +11,7 @@ ELONG = re.compile(r"(\w)\1{2,}")  # soooo -> soo -> so
 def _normalize_elongations(text: str) -> str:
     def repl(m):
         return m.group(1) * 2
+
     return ELONG.sub(repl, text)
 
 

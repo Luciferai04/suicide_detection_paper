@@ -1,14 +1,13 @@
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 import numpy as np
-import pandas as pd
 from sklearn.metrics import (
     accuracy_score,
-    precision_recall_fscore_support,
-    roc_auc_score,
     average_precision_score,
     confusion_matrix,
+    precision_recall_fscore_support,
+    roc_auc_score,
 )
 
 
@@ -24,10 +23,18 @@ class EvalResults:
     cost_weighted_accuracy: Optional[float]
 
 
-def compute_metrics(y_true: np.ndarray, y_prob: np.ndarray, threshold: float = 0.5, fn_cost: float = 5.0, fp_cost: float = 1.0) -> EvalResults:
+def compute_metrics(
+    y_true: np.ndarray,
+    y_prob: np.ndarray,
+    threshold: float = 0.5,
+    fn_cost: float = 5.0,
+    fp_cost: float = 1.0,
+) -> EvalResults:
     y_pred = (y_prob >= threshold).astype(int)
     acc = accuracy_score(y_true, y_pred)
-    prec, rec, f1, _ = precision_recall_fscore_support(y_true, y_pred, average="binary", zero_division=0)
+    prec, rec, f1, _ = precision_recall_fscore_support(
+        y_true, y_pred, average="binary", zero_division=0
+    )
     try:
         roc = roc_auc_score(y_true, y_prob)
     except Exception:
@@ -57,7 +64,9 @@ def compute_metrics(y_true: np.ndarray, y_prob: np.ndarray, threshold: float = 0
     )
 
 
-def fairness_metrics(y_true: np.ndarray, y_prob: np.ndarray, groups: Optional[np.ndarray], threshold: float = 0.5) -> Dict[str, Dict[str, float]]:
+def fairness_metrics(
+    y_true: np.ndarray, y_prob: np.ndarray, groups: Optional[np.ndarray], threshold: float = 0.5
+) -> Dict[str, Dict[str, float]]:
     """Compute simple fairness metrics per group.
 
     Returns a dict keyed by group with metrics:
@@ -95,4 +104,3 @@ def fairness_metrics(y_true: np.ndarray, y_prob: np.ndarray, groups: Optional[np
             "fpr": fpr,
         }
     return out
-

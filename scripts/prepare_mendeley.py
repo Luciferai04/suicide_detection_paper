@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import argparse
 from pathlib import Path
+import sys
+# Ensure local package import without relying on editable install
+sys.path.append(str((Path(__file__).resolve().parents[1] / 'src')))
 import json
 import pandas as pd
 from suicide_detection.data_processing import Anonymizer
@@ -37,6 +40,8 @@ def main():
     ap = argparse.ArgumentParser(description="Prepare Mendeley datasets: merge, anonymize, clean, split")
     ap.add_argument("--indir", default="data/mendeley")
     ap.add_argument("--outdir", default="data/mendeley/splits")
+    ap.add_argument("--group_cols", nargs="*", default=[], help="Optional quasi-identifier columns to check k-anonymity (if present)")
+    ap.add_argument("--k_anonymity_k", type=int, default=5)
     args = ap.parse_args()
 
     indir = Path(args.indir)
@@ -60,17 +65,42 @@ def main():
     anon = Anonymizer()
     df['text'] = df['text'].map(anon.transform).map(reddit_clean)
 
-    # Split
-    from sklearn.model_selection import train_test_split
+    # Optional k-anonymity report if group columns exist
+    if args.group_cols:
+        try:
+            from suicide_detection.ethics.privacy import k_anonymity_report, write_privacy_report
+            rep = k_anonymity_report(df, args.group_cols, k=args.k_anonymity_k)
+            write_privacy_report(rep, Path("results/privacy") / "mendeley_k_anon.json")
+        except Exception:
+            pass
+
+    # Split without sklearn (stratified)
+    import numpy as np
+    rng = np.random.default_rng(42)
     X = df['text'].values
     y = df['label'].values
-    X_trainval, X_test, y_trainval, y_test = train_test_split(X,y,test_size=0.15,stratify=y,random_state=42)
-    X_train, X_val, y_train, y_val = train_test_split(X_trainval,y_trainval,test_size=0.1765,stratify=y_trainval,random_state=42)
-    def dump(x,y,name):
-        pd.DataFrame({'text':x,'label':y}).to_csv(outdir/f"{name}.csv", index=False)
-    dump(X_train,y_train,'train')
-    dump(X_val,y_val,'val')
-    dump(X_test,y_test,'test')
+    idx = np.arange(len(y))
+    train_idx, val_idx, test_idx = [], [], []
+    for label in np.unique(y):
+        li = idx[y == label]
+        rng.shuffle(li)
+        n = len(li)
+        n_test = max(1, int(0.15 * n))
+        n_val = max(1, int(0.15 * (n - n_test)))
+        test_i = li[:n_test]
+        val_i = li[n_test:n_test+n_val]
+        train_i = li[n_test+n_val:]
+        test_idx.append(test_i)
+        val_idx.append(val_i)
+        train_idx.append(train_i)
+    train_idx = np.concatenate(train_idx)
+    val_idx = np.concatenate(val_idx)
+    test_idx = np.concatenate(test_idx)
+    def dump(idxs, name):
+        pd.DataFrame({'text': X[idxs], 'label': y[idxs]}).to_csv(outdir/f"{name}.csv", index=False)
+    dump(train_idx, 'train')
+    dump(val_idx, 'val')
+    dump(test_idx, 'test')
     print(f"Wrote splits to {outdir}")
 
 if __name__ == '__main__':

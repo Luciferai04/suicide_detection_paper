@@ -1,0 +1,44 @@
+stages:
+  preprocess:
+    cmd: python scripts/preprocess.py --input data/raw/dataset.csv --output data/processed/dataset.csv
+    deps:
+      - scripts/preprocess.py
+      - data/raw/dataset.csv
+    outs:
+      - data/processed/dataset.csv
+  train_svm:
+    cmd: python -m suicide_detection.training.train --model svm --data_path data/processed/dataset.csv --output_dir results/model_outputs/svm
+    deps:
+      - src/suicide_detection
+      - data/processed/dataset.csv
+    outs:
+      - results/model_outputs/svm
+  train_bilstm:
+    cmd: python -m suicide_detection.training.train --model bilstm --data_path data/processed/dataset.csv --output_dir results/model_outputs/bilstm
+    deps:
+      - src/suicide_detection
+      - data/processed/dataset.csv
+    outs:
+      - results/model_outputs/bilstm
+  train_bert:
+    cmd: python -m suicide_detection.training.train --model bert --data_path data/processed/dataset.csv --output_dir results/model_outputs/bert
+    deps:
+      - src/suicide_detection
+      - data/processed/dataset.csv
+    outs:
+      - results/model_outputs/bert
+  compare:
+    cmd: python scripts/compare_models.py
+    deps:
+      - scripts/compare_models.py
+      - results/model_outputs
+    outs:
+      - results/comparison_tables/model_comparison.csv
+  report:
+    cmd: python scripts/generate_report.py
+    deps:
+      - scripts/generate_report.py
+      - results/model_outputs
+      - results/comparison_tables/model_comparison.csv
+    outs:
+      - results/final_report.html

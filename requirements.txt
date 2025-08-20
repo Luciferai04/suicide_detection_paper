@@ -29,7 +29,12 @@ mypy
 pre-commit
 statsmodels
 dvc
+umap-learn
+wordcloud
+jinja2
 kaggle
 requests
 gitpython
-
+transformers-interpret
+captum
+pip-tools

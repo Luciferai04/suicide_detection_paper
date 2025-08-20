@@ -28,17 +28,19 @@ def main():
         print(f"ERROR: Kaggle download failed: {e}")
         sys.exit(1)
 
-    # If generic zip present, find latest zip
+    # Handle direct CSV or ZIPs
+    csvs = list(target_dir.glob("*.csv"))
     zips = list(target_dir.glob("*.zip"))
-    if not zips:
-        print("ERROR: No zip file downloaded.")
+    if csvs:
+        print(f"Downloaded CSVs: {[p.name for p in csvs]} in {target_dir}")
+    elif zips:
+        for zp in zips:
+            with zipfile.ZipFile(zp, 'r') as zf:
+                zf.extractall(target_dir)
+        print(f"Extracted ZIPs to {target_dir}")
+    else:
+        print("ERROR: No CSV or ZIP file downloaded.")
         sys.exit(1)
-    # Extract
-    for zp in zips:
-        with zipfile.ZipFile(zp, 'r') as zf:
-            zf.extractall(target_dir)
-        # keep zip as evidence; could delete if needed
-    print(f"Downloaded and extracted to {target_dir}")
 
 if __name__ == "__main__":
     main()

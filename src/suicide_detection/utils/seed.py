@@ -1,5 +1,6 @@
 import os
 import random
+
 import numpy as np
 import torch
 
@@ -18,4 +19,3 @@ def set_global_seed(seed: int) -> None:
     # Apple MPS backend
     if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
         torch.manual_seed(seed)
-

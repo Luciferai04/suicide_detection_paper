@@ -1,10 +1,8 @@
 from pathlib import Path
-from typing import Optional, Tuple
 
 import pandas as pd
 
 from .anonymize import Anonymizer
-
 
 REQUIRED_COLUMNS = {"text", "label"}
 
@@ -41,4 +39,3 @@ def load_dataset_secure(path: Path, anonymize: bool = True) -> pd.DataFrame:
         df["text"] = df["text"].astype(str).map(anon.transform)
 
     return df
-

@@ -1,0 +1,16 @@
+evaluation:
+  use_stratified_kfold: false
+  n_splits: 5
+
+bert:
+  batch_size: 8
+  num_epochs: 3
+  warmup_ratio: 0.06
+  fp16: false
+  bf16: false
+
+bilstm:
+  batch_size: 64
+  num_epochs: 10
+  early_stopping_patience: 3
+

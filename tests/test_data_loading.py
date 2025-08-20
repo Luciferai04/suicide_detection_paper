@@ -1,8 +1,7 @@
-import json
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
+
 from suicide_detection.data_processing.load import load_dataset_secure
 
 
@@ -14,4 +13,3 @@ def test_load_dataset_secure(tmp_path: Path):
     loaded = load_dataset_secure(p)
     assert set(["text", "label"]).issubset(loaded.columns)
     assert "<USER>" in loaded.loc[0, "text"]
-

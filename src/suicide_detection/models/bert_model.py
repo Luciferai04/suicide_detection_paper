@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import Dict, Optional
 
 import torch
 from torch.utils.data import Dataset
@@ -37,6 +36,7 @@ class TextDataset(Dataset):
 
 def build_model_and_tokenizer(cfg: BertConfig):
     tokenizer = AutoTokenizer.from_pretrained(cfg.model_name, use_fast=True)
-    model = AutoModelForSequenceClassification.from_pretrained(cfg.model_name, num_labels=cfg.num_labels)
+    model = AutoModelForSequenceClassification.from_pretrained(
+        cfg.model_name, num_labels=cfg.num_labels
+    )
     return model, tokenizer
-

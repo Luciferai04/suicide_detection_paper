@@ -1,0 +1,64 @@
+# Master pipeline configuration
+# Controls which stages to run and their parameters
+
+stages:
+  hyperopt: false  # Set to true for full hyperparameter optimization
+  baseline_training: true
+  cross_dataset: true
+  transformer_variants: false  # Set to true to test multiple BERT variants
+  fairness: true
+  clinical_eval: true
+
+hyperopt:
+  enabled: false  # Quick mode - skip hyperopt for faster testing
+  models:
+    - svm
+    - bilstm
+    - bert
+  n_trials: 10  # Reduced for testing
+  timeout: 600  # 10 minutes per model
+
+training:
+  models:
+    - svm
+  datasets:
+    - kaggle
+
+cross_dataset:
+  train_datasets:
+    - kaggle
+  test_datasets:
+    - kaggle
+    - mendeley
+  models:
+    - svm
+
+transformers:
+  variants:
+    - bert-base-uncased
+    - distilbert-base-uncased
+  dataset: kaggle
+
+fairness:
+  enabled: true
+  demographic_columns:
+    - inferred_age_group
+    - inferred_gender
+  thresholds:
+    demographic_parity_difference: 0.1
+    equal_opportunity_difference: 0.1
+    equalized_odds_difference: 0.1
+    predictive_parity_difference: 0.1
+
+clinical_eval:
+  enabled: true
+  targets:
+    min_accuracy: 0.95
+    min_recall: 0.90
+    min_precision: 0.85
+  cost_matrix:
+    false_negative_cost: 5.0
+    false_positive_cost: 1.0
+  bootstrap:
+    enabled: true
+    n_resamples: 100  # Reduced for testing

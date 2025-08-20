@@ -1,12 +1,11 @@
 from dataclasses import dataclass
-from typing import Any, Dict, Tuple
+from typing import Any, Dict
 
 import numpy as np
 from sklearn.metrics import classification_report
 from sklearn.model_selection import GridSearchCV
+from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
-from imblearn.pipeline import Pipeline
-from imblearn.over_sampling import SMOTE
 
 from ..features.tfidf_features import TfidfFeatures
 
@@ -22,10 +21,12 @@ class SVMBaseline:
     cv: int = 5
 
     def build(self) -> Pipeline:
+        # Note: SMOTE is not applied because TF-IDF features are sparse; SMOTE requires dense arrays.
+        # We instead use class_weight='balanced' in SVC to handle class imbalance.
         features = TfidfFeatures().build()
-        svm = SVC(kernel="rbf", probability=True)
-        # SMOTE inside the pipeline ensures resampling is done only on training folds during CV
-        pipe = Pipeline([("features", features), ("smote", SMOTE(random_state=42)), ("clf", svm)])
+        svm = SVC(kernel="rbf", probability=True, class_weight="balanced")
+        steps = [("features", features), ("clf", svm)]
+        pipe = Pipeline(steps)
         return pipe
 
     def tune(self, X: np.ndarray, y: np.ndarray) -> GridSearchCV:
@@ -41,4 +42,3 @@ class SVMBaseline:
     @staticmethod
     def report(y_true: np.ndarray, y_pred: np.ndarray, target_names=None) -> str:
         return classification_report(y_true, y_pred, target_names=target_names)
-

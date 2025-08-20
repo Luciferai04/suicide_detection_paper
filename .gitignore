@@ -13,6 +13,17 @@ __pycache__/
 !/data/README.md
 /mlruns/
 /results/
+!/results/comparison_tables/
+!/results/final_report.html
+!/results/model_outputs/*/*.png
+
+# Runtime artifacts
+*.pid
+*.log
+/logs/
+/run_state/
+/notifications/
+/artifacts/
 
 # DVC
 /.dvc/
@@ -24,4 +35,7 @@ __pycache__/
 # HuggingFace caches
 /hf_cache/
 ~$*
+
+# Nested git repositories
+paper/finalmeet1/
 

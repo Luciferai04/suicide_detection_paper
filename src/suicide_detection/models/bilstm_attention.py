@@ -1,10 +1,9 @@
-from dataclasses import dataclass
 import math
+from dataclasses import dataclass
 from typing import Optional, Tuple
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 
 class Attention(nn.Module):
@@ -14,7 +13,9 @@ class Attention(nn.Module):
         self.query = nn.Linear(hidden_dim * (2 if bidirectional else 1), hidden_dim)
         self.v = nn.Linear(hidden_dim, 1, bias=False)
 
-    def forward(self, h: torch.Tensor, mask: Optional[torch.Tensor] = None) -> Tuple[torch.Tensor, torch.Tensor]:
+    def forward(
+        self, h: torch.Tensor, mask: Optional[torch.Tensor] = None
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
         # h: (batch, seq, hidden*dirs)
         q = torch.tanh(self.query(h))  # (batch, seq, hidden)
         scores = self.v(q).squeeze(-1) * self.scale  # (batch, seq)
@@ -55,7 +56,9 @@ class BiLSTMAttention(nn.Module):
         self.fc = nn.Linear(out_dim, cfg.num_classes)
         self.last_attn: Optional[torch.Tensor] = None
 
-    def forward(self, input_ids: torch.Tensor, attention_mask: Optional[torch.Tensor] = None) -> torch.Tensor:
+    def forward(
+        self, input_ids: torch.Tensor, attention_mask: Optional[torch.Tensor] = None
+    ) -> torch.Tensor:
         # input_ids: (batch, seq)
         x = self.embedding(input_ids)
         outputs, _ = self.lstm(x)
@@ -63,4 +66,3 @@ class BiLSTMAttention(nn.Module):
         self.last_attn = attn_w.detach() if isinstance(attn_w, torch.Tensor) else None
         logits = self.fc(self.dropout(context))
         return logits
-

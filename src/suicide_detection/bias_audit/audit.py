@@ -1,9 +1,11 @@
+from typing import Dict
+
 import numpy as np
-import pandas as pd
-from typing import Optional, Dict
 
 
-def demographic_group_metrics(y_true: np.ndarray, y_prob: np.ndarray, groups: np.ndarray) -> Dict[str, Dict[str, float]]:
+def demographic_group_metrics(
+    y_true: np.ndarray, y_prob: np.ndarray, groups: np.ndarray
+) -> Dict[str, Dict[str, float]]:
     """Compute simple subgroup metrics if demographic groups are available.
 
     Safe no-op pattern: if groups is None or empty, return empty dict.
@@ -25,4 +27,3 @@ def demographic_group_metrics(y_true: np.ndarray, y_prob: np.ndarray, groups: np
         spec = tn / (tn + fp) if (tn + fp) > 0 else 0.0
         res[str(g)] = {"support": int(idx.sum()), "sensitivity": sens, "specificity": spec}
     return res
-

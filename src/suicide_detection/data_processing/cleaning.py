@@ -4,7 +4,6 @@ import re
 from dataclasses import dataclass
 from typing import Callable
 
-
 CONTRACTIONS = {
     "don't": "do not",
     "doesn't": "does not",
@@ -26,7 +25,9 @@ def _expand_contractions(text: str) -> str:
         w = match.group(0).lower()
         return CONTRACTIONS.get(w, w)
 
-    pattern = re.compile(r"\b(" + "|".join(map(re.escape, CONTRACTIONS.keys())) + r")\b", re.IGNORECASE)
+    pattern = re.compile(
+        r"\b(" + "|".join(map(re.escape, CONTRACTIONS.keys())) + r")\b", re.IGNORECASE
+    )
     return pattern.sub(repl, text)
 
 

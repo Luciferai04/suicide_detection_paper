@@ -1,0 +1,2789 @@
+[2025-08-19 14:31:11,359] INFO - train: BiLSTM epoch 1 val F1=0.9201
+[2025-08-19 14:35:27,414] INFO - train: BiLSTM epoch 2 val F1=0.9367
+[2025-08-19 14:39:13,625] INFO - train: BiLSTM epoch 3 val F1=0.9460
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8091180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8090e00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8091880>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8091c00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8091f80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8092300>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8092680>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8092a00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8092d80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8093100>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8093480>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8093800>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8098380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8098000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8098380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8098700>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8098a80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8098e00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8099180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8099500>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8099880>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8099c00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b8099f80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809a300>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809a680>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809aa00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809b100>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809ad80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809b480>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809b800>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809c380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809c000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809c380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809c700>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809ca80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809ce00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809d180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809d500>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809d880>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809dc00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809df80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809e300>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809e680>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809ea00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809ed80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809f100>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809f480>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b809f800>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a4380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a4000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a4380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a4700>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a4a80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a4e00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a5180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a5500>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a5880>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a5c00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a6300>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a5f80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a6680>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a6a00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a6d80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a7100>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a7480>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80a7800>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ac380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ac000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ac380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ac700>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ad180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ace00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80aca80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ad500>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ad880>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80adc00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80adf80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ae300>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ae680>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80aea00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80aed80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80af100>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80af480>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80af800>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80b8380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80b8000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80b8380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80b8700>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80b8a80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80b8e00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80b9180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80b9500>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80b9880>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80b9c00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80b9f80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ba300>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ba680>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80baa00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80bad80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80bb100>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80bb480>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80bb800>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c4380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c4000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c4380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c4700>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c4a80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c4e00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c5180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c5500>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c5880>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c5c00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c5f80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c6300>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c6680>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c6a00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c6d80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c7100>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c7480>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80c7800>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d4380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d4000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d4380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d4700>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d4a80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d4e00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d5180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d5500>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d5880>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d5c00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d5f80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d6300>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d6680>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d7100>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d6d80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d6a00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d7480>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80d7800>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80dc380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80dc000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80dc380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80dc700>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80dca80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80dce00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80dd180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80dd500>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80dd880>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ddc00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ddf80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80de300>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80de680>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80dea00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ded80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80df100>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80df480>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80df800>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e4380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e4000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e4380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e4700>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e4a80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e4e00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e5180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e5880>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e5500>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e5c00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e5f80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e6680>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e6300>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e6a00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e6d80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e7100>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80e7480>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ec000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ec380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ec000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ec380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ec700>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80eca80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ece00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ed180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ed500>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ed880>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80edc00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80edf80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ee300>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ee680>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80eea00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80eed80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ef100>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ef480>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80ef800>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80f4380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80f4000>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80f4380>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80f4700>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80f4a80>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80f4e00>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1
+Error: command buffer exited with error status.
+	The Metal Performance Shaders operations encoded on it may not have completed.
+	Error: 
+	(null)
+	Internal Error (00000001:Internal Error)
+	<AGXG16XFamilyCommandBuffer: 0x7b80f5180>
+    label = <none> 
+    device = <AGXG16SDevice: 0x789964000>
+        name = Apple M4 Pro 
+    commandQueue = <AGXG16XFamilyCommandQueue: 0x1012e9ef0>
+        label = <none> 
+        device = <AGXG16SDevice: 0x789964000>
+            name = Apple M4 Pro 
+    retainedReferences = 1

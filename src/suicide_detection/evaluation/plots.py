@@ -1,8 +1,8 @@
 from pathlib import Path
-from typing import Optional
-import numpy as np
+
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, precision_recall_curve, confusion_matrix
+import numpy as np
+from sklearn.metrics import confusion_matrix, precision_recall_curve, roc_curve
 
 
 def save_curves(y_true: np.ndarray, y_prob: np.ndarray, out_dir: Path, prefix: str) -> None:
@@ -11,7 +11,7 @@ def save_curves(y_true: np.ndarray, y_prob: np.ndarray, out_dir: Path, prefix: s
     fpr, tpr, _ = roc_curve(y_true, y_prob)
     plt.figure()
     plt.plot(fpr, tpr, label="ROC")
-    plt.plot([0,1],[0,1], linestyle="--", color="grey")
+    plt.plot([0, 1], [0, 1], linestyle="--", color="grey")
     plt.xlabel("False Positive Rate")
     plt.ylabel("True Positive Rate")
     plt.title(f"ROC Curve - {prefix}")
