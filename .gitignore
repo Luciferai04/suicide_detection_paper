@@ -1,4 +1,6 @@
-/.DS_Store
+# OS junk
+**/.DS_Store
+
 /.venv/
 __pycache__/
 *.pyc
@@ -7,6 +9,16 @@ __pycache__/
 .pytest_cache/
 /.idea/
 /.vscode/
+
+# LaTeX auxiliaries (keep PDFs)
+**/*.aux
+**/*.synctex.gz
+**/*.out
+**/*.toc
+**/*.bbl
+**/*.blg
+**/*.lof
+**/*.lot
 
 # Data and artifacts
 /data/
