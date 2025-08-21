@@ -27,6 +27,223 @@ from suicide_detection.utils.seed import set_global_seed
 # Shared helpers
 # -------------------------
 
+def _load_configs(default_path: Optional[str], override_path: Optional[str]) -> Dict[str, Any]:
+    cfg_default: Dict[str, Any] = {}
+    cfg_model: Dict[str, Any] = {}
+    if default_path and Path(default_path).exists():
+        try:
+            cfg_default = yaml.safe_load(Path(default_path).read_text()) or {}
+        except Exception:
+            cfg_default = {}
+    if override_path and Path(override_path).exists():
+        try:
+            cfg_model = yaml.safe_load(Path(override_path).read_text()) or {}
+        except Exception:
+            cfg_model = {}
+    return {**cfg_default, **cfg_model}
+
+
+def _setup_mlflow(logger, cfg_file: Path = Path("configs/mlflow.yaml")) -> bool:
+    ml_enabled = False
+    if cfg_file.exists():
+        try:
+            cfg = yaml.safe_load(cfg_file.read_text())
+            ml_enabled = bool(cfg.get("enabled", False))
+            if ml_enabled:
+                tracking_uri = cfg.get("tracking_uri", "file:./mlruns")
+                mlflow.set_tracking_uri(tracking_uri)
+                mlflow.set_experiment(cfg.get("experiment_name", "suicide_detection_research"))
+        except Exception as e:
+            logger.warning(f"Failed to read MLflow config: {e}")
+    return ml_enabled
+
+
+# BiLSTM helpers factored out to reduce run_bilstm complexity
+
+def bilstm_build_vocab(texts, min_freq: int = 2, max_size: int = 50000):
+    from collections import Counter
+
+    counter = Counter()
+    for t in texts:
+        counter.update(str(t).split())
+    vocab = {"<pad>": 0, "<unk>": 1}
+    for tok, freq in counter.most_common():
+        if freq < min_freq:
+            break
+        if len(vocab) >= max_size:
+            break
+        vocab[tok] = len(vocab)
+    return vocab
+
+
+def bilstm_encode(text, vocab, max_len: int):
+    return [vocab.get(tok, 1) for tok in str(text).split()][:max_len]
+
+
+def bilstm_make_dataset(X, y, vocab, max_len: int):
+    enc = [torch.tensor(bilstm_encode(t, vocab, max_len), dtype=torch.long) for t in X]
+    attn = [torch.ones_like(e, dtype=torch.bool) for e in enc]
+    labels = [torch.tensor(int(lbl), dtype=torch.long) for lbl in y]
+    return list(zip(enc, attn, labels))
+
+
+def bilstm_collate(batch, max_len: int):
+    from torch.nn.utils.rnn import pad_sequence
+
+    ids, attn, labels = zip(*batch)
+    ids_pad = pad_sequence(ids, batch_first=True, padding_value=0)
+    attn_pad = pad_sequence(attn, batch_first=True, padding_value=0)
+    labels_t = torch.stack(labels)
+    return ids_pad[:, :max_len], attn_pad[:, :max_len], labels_t
+
+
+def bilstm_evaluate(model, loader, device):
+    model.eval()
+    ys, ps = [], []
+    with torch.no_grad():
+        for ids, attn, labels in loader:
+            ids, attn, labels = ids.to(device), attn.to(device), labels.to(device)
+            logits = model(ids, attn)
+            prob = torch.softmax(logits, dim=-1)[:, 1]
+            ys.append(labels.cpu())
+            ps.append(prob.cpu())
+    y_true = torch.cat(ys).numpy()
+    y_prob = torch.cat(ps).numpy()
+    return compute_metrics(y_true, y_prob)
+
+
+def bilstm_collect(model, loader, device):
+    ys, ps = [], []
+    with torch.no_grad():
+        for ids, attn, labels in loader:
+            ids, attn = ids.to(device), attn.to(device)
+            outputs = model(ids, attn)
+            prob = torch.softmax(outputs, dim=-1)[:, 1]
+            ys.append(labels)
+            ps.append(prob.cpu())
+    y_true = torch.cat(ys).numpy()
+    y_prob = torch.cat(ps).numpy()
+    return y_true, y_prob
+
+
+def bilstm_train(model, train_loader, val_loader, device, logger, criterion, optimizer, output_dir: Path, num_epochs: int, early_patience: int):
+    best_f1, patience, max_patience = 0.0, 0, early_patience
+    for epoch in range(1, num_epochs + 1):
+        model.train()
+        for ids, attn, labels in train_loader:
+            ids, attn, labels = ids.to(device), attn.to(device), labels.to(device)
+            optimizer.zero_grad()
+            logits = model(ids, attn)
+            loss = criterion(logits, labels)
+            loss.backward()
+            optimizer.step()
+        val_res = bilstm_evaluate(model, val_loader, device)
+        logger.info(f"BiLSTM epoch {epoch} val F1={val_res.f1:.4f}")
+        if val_res.f1 > best_f1 + 1e-4:
+            best_f1 = val_res.f1
+            patience = 0
+            out_model = output_dir / "bilstm.pt"
+            out_model.parent.mkdir(parents=True, exist_ok=True)
+            torch.save(model.state_dict(), out_model)
+        else:
+            patience += 1
+            if patience > max_patience:
+                break
+    return model
+
+
+def bilstm_save_attention_visualizations(model, val_loader, device, output_dir: Path, logger):
+    try:
+        import matplotlib.pyplot as plt
+
+        vis_dir = output_dir / "attention"
+        vis_dir.mkdir(parents=True, exist_ok=True)
+        count = 0
+        model.eval()
+        with torch.no_grad():
+            for ids, attn, _labels in val_loader:
+                ids, attn = ids.to(device), attn.to(device)
+                _ = model(ids, attn)
+                attn_w = getattr(model, "last_attn", None)
+                if attn_w is None:
+                    break
+                attn_w = attn_w.cpu().numpy()
+                for i in range(min(attn_w.shape[0], 5 - count)):
+                    plt.figure(figsize=(8, 2))
+                    plt.imshow(attn_w[i][None, : ids.shape[1]], aspect="auto", cmap="viridis")
+                    plt.colorbar()
+                    plt.yticks([])
+                    plt.xlabel("Token index")
+                    plt.title("BiLSTM Attention Weights (sample {})".format(i))
+                    plt.savefig(vis_dir / f"val_attn_{count+i}.png", dpi=150, bbox_inches="tight")
+                    plt.close()
+                count += min(attn_w.shape[0], 5 - count)
+                if count >= 5:
+                    break
+    except Exception as e:
+        logger.warning(f"Failed to save attention visualizations: {e}")
+
+
+# BERT helpers factored out to reduce run_bert complexity
+
+def bert_hf_metrics(eval_pred):
+    logits, labels = eval_pred
+    probs = torch.softmax(torch.tensor(logits), dim=-1)[:, 1].numpy()
+    res = compute_metrics(labels, probs)
+    return {
+        "accuracy": res.accuracy,
+        "precision": res.precision,
+        "recall": res.recall,
+        "f1": res.f1,
+        "roc_auc": res.roc_auc if res.roc_auc is not None else float("nan"),
+        "pr_auc": res.pr_auc if res.pr_auc is not None else float("nan"),
+    }
+
+
+def bert_save_outputs(trainer, val_ds, y_val, y_test, y_prob_test, X_test, output_dir: Path):
+    try:
+        y_val_prob_local = trainer.predict(val_ds).predictions
+        y_val_prob_local = torch.softmax(torch.tensor(y_val_prob_local), dim=-1)[:, 1].numpy()
+        np.save(output_dir / "bert_val_probs.npy", np.array(y_val_prob_local))
+        np.save(output_dir / "bert_val_y.npy", np.array(y_val))
+        np.save(output_dir / "bert_test_probs.npy", np.array(y_prob_test))
+        np.save(output_dir / "bert_test_y.npy", np.array(y_test))
+        # Standardized outputs for error analysis
+        np.save(output_dir / "test_probabilities.npy", np.array(y_prob_test))
+        np.save(output_dir / "test_labels.npy", np.array(y_test))
+        np.save(output_dir / "test_predictions.npy", (np.array(y_prob_test) >= 0.5).astype(int))
+        try:
+            test_texts = list(map(str, X_test))
+            (output_dir / "test_texts.json").write_text(
+                json.dumps(test_texts, ensure_ascii=False, indent=2)
+            )
+        except Exception:
+            pass
+    except Exception:
+        pass
+
+
+def bert_save_plots_and_fairness(trainer, val_ds, y_val, y_test, y_prob_test, output_dir: Path, groups: Optional[dict]):
+    y_val_prob_local = trainer.predict(val_ds).predictions
+    y_val_prob_local = torch.softmax(torch.tensor(y_val_prob_local), dim=-1)[:, 1].numpy()
+    y_val_true = np.array(y_val)
+    save_curves(y_val_true, y_val_prob_local, output_dir, "bert_val")
+    save_confusion(y_val_true, (y_val_prob_local >= 0.5).astype(int), output_dir, "bert_val")
+    save_curves(np.array(y_test), y_prob_test, output_dir, "bert_test")
+    save_confusion(np.array(y_test), (y_prob_test >= 0.5).astype(int), output_dir, "bert_test")
+
+    # Fairness outputs if group labels provided
+    if groups:
+        if groups.get("val") is not None:
+            fm = fairness_metrics(np.array(y_val), np.array(y_val_prob_local), np.array(groups["val"]))
+            with open(output_dir / "bert_val_fairness.json", "w") as f:
+                json.dump(fm, f, indent=2)
+        if groups.get("test") is not None:
+            fm = fairness_metrics(np.array(y_test), np.array(y_prob_test), np.array(groups["test"]))
+            with open(output_dir / "bert_test_fairness.json", "w") as f:
+                json.dump(fm, f, indent=2)
+
+
 def _svm_probability(clf, X):
     """Return probability-like scores for SVM pipelines, robust to missing predict_proba."""
     try:
