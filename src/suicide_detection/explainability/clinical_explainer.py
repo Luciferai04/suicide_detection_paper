@@ -162,96 +162,103 @@ class ClinicalExplainer:
     ) -> str:
         """Generate human-readable report for clinicians."""
 
-        report_lines = []
+        lines = []
+        self._append_header(lines, patient_id, explanation)
+        self._append_summary(lines, explanation)
+        self._append_primary_concerns(lines, explanation)
+        self._append_high_risk_indicators(lines, explanation)
+        self._append_protective_factors(lines, explanation)
+        self._append_recommendations(lines, explanation)
+        self._append_limitations(lines, explanation)
+        self._append_literature(lines, explanation)
+        self._append_disclaimer(lines)
+        return "\n".join(lines)
 
-        # Header
-        report_lines.append("=" * 60)
-        report_lines.append("SUICIDE RISK ASSESSMENT - CLINICAL EXPLANATION")
-        report_lines.append("=" * 60)
-
+    def _append_header(self, lines: list[str], patient_id: str | None, explanation: ClinicalExplanation) -> None:
+        lines.append("=" * 60)
+        lines.append("SUICIDE RISK ASSESSMENT - CLINICAL EXPLANATION")
+        lines.append("=" * 60)
         if patient_id:
-            report_lines.append(f"Patient ID: {patient_id}")
-
-        report_lines.append(
+            lines.append(f"Patient ID: {patient_id}")
+        lines.append(
             f"Assessment Time: {explanation.explanation_timestamp.strftime('%Y-%m-%d %H:%M:%S')}"
         )
-        report_lines.append("")
+        lines.append("")
 
-        # Risk assessment summary
-        report_lines.append("RISK ASSESSMENT SUMMARY")
-        report_lines.append("-" * 30)
-        report_lines.append(f"Risk Level: {explanation.risk_level.upper()}")
-        report_lines.append(f"Prediction Probability: {explanation.prediction_probability:.3f}")
-        report_lines.append(f"Confidence Score: {explanation.confidence_score:.3f}")
-
+    def _append_summary(self, lines: list[str], explanation: ClinicalExplanation) -> None:
+        lines.append("RISK ASSESSMENT SUMMARY")
+        lines.append("-" * 30)
+        lines.append(f"Risk Level: {explanation.risk_level.upper()}")
+        lines.append(f"Prediction Probability: {explanation.prediction_probability:.3f}")
+        lines.append(f"Confidence Score: {explanation.confidence_score:.3f}")
         if explanation.prediction_uncertainty > 0.2:
-            report_lines.append(f"⚠️  High Uncertainty: {explanation.prediction_uncertainty:.3f}")
+            lines.append(f"⚠️  High Uncertainty: {explanation.prediction_uncertainty:.3f}")
+        lines.append("")
 
-        report_lines.append("")
+    def _append_primary_concerns(self, lines: list[str], explanation: ClinicalExplanation) -> None:
+        if not explanation.primary_concerns:
+            return
+        lines.append("PRIMARY CLINICAL CONCERNS")
+        lines.append("-" * 30)
+        for concern in explanation.primary_concerns:
+            lines.append(f"• {concern}")
+        lines.append("")
 
-        # Primary concerns
-        if explanation.primary_concerns:
-            report_lines.append("PRIMARY CLINICAL CONCERNS")
-            report_lines.append("-" * 30)
-            for concern in explanation.primary_concerns:
-                report_lines.append(f"• {concern}")
-            report_lines.append("")
+    def _append_high_risk_indicators(self, lines: list[str], explanation: ClinicalExplanation) -> None:
+        if not explanation.high_risk_indicators:
+            return
+        lines.append("HIGH-RISK INDICATORS IDENTIFIED")
+        lines.append("-" * 30)
+        for indicator in explanation.high_risk_indicators[:5]:
+            importance = indicator.get("importance", 0)
+            evidence = indicator.get("evidence", "N/A")
+            lines.append(f"• {indicator['factor']} (importance: {importance:.3f})")
+            if evidence != "N/A":
+                lines.append(f"  Evidence: {evidence}")
+        lines.append("")
 
-        # High-risk indicators
-        if explanation.high_risk_indicators:
-            report_lines.append("HIGH-RISK INDICATORS IDENTIFIED")
-            report_lines.append("-" * 30)
-            for indicator in explanation.high_risk_indicators[:5]:  # Top 5
-                importance = indicator.get("importance", 0)
-                evidence = indicator.get("evidence", "N/A")
-                report_lines.append(f"• {indicator['factor']} (importance: {importance:.3f})")
-                if evidence != "N/A":
-                    report_lines.append(f"  Evidence: {evidence}")
-            report_lines.append("")
+    def _append_protective_factors(self, lines: list[str], explanation: ClinicalExplanation) -> None:
+        if not explanation.protective_factors:
+            return
+        lines.append("PROTECTIVE FACTORS PRESENT")
+        lines.append("-" * 30)
+        for factor in explanation.protective_factors[:3]:
+            lines.append(f"• {factor['factor']} (strength: {factor.get('strength', 0):.3f})")
+        lines.append("")
 
-        # Protective factors
-        if explanation.protective_factors:
-            report_lines.append("PROTECTIVE FACTORS PRESENT")
-            report_lines.append("-" * 30)
-            for factor in explanation.protective_factors[:3]:  # Top 3
-                report_lines.append(
-                    f"• {factor['factor']} (strength: {factor.get('strength', 0):.3f})"
-                )
-            report_lines.append("")
-
-        # Clinical recommendations
-        report_lines.append("CLINICAL RECOMMENDATIONS")
-        report_lines.append("-" * 30)
+    def _append_recommendations(self, lines: list[str], explanation: ClinicalExplanation) -> None:
+        lines.append("CLINICAL RECOMMENDATIONS")
+        lines.append("-" * 30)
         for i, rec in enumerate(explanation.clinical_recommendations, 1):
-            report_lines.append(f"{i}. {rec}")
-        report_lines.append("")
+            lines.append(f"{i}. {rec}")
+        lines.append("")
 
-        # Model limitations
-        if explanation.model_limitations:
-            report_lines.append("MODEL LIMITATIONS & CONSIDERATIONS")
-            report_lines.append("-" * 30)
-            for limitation in explanation.model_limitations:
-                report_lines.append(f"• {limitation}")
-            report_lines.append("")
+    def _append_limitations(self, lines: list[str], explanation: ClinicalExplanation) -> None:
+        if not explanation.model_limitations:
+            return
+        lines.append("MODEL LIMITATIONS & CONSIDERATIONS")
+        lines.append("-" * 30)
+        for limitation in explanation.model_limitations:
+            lines.append(f"• {limitation}")
+        lines.append("")
 
-        # Literature references
-        if explanation.literature_references:
-            report_lines.append("SUPPORTING LITERATURE")
-            report_lines.append("-" * 30)
-            for ref in explanation.literature_references[:3]:  # Top 3 most relevant
-                report_lines.append(f"• {ref}")
-            report_lines.append("")
+    def _append_literature(self, lines: list[str], explanation: ClinicalExplanation) -> None:
+        if not explanation.literature_references:
+            return
+        lines.append("SUPPORTING LITERATURE")
+        lines.append("-" * 30)
+        for ref in explanation.literature_references[:3]:
+            lines.append(f"• {ref}")
+        lines.append("")
 
-        # Disclaimer
-        report_lines.append("IMPORTANT CLINICAL DISCLAIMER")
-        report_lines.append("-" * 30)
-        report_lines.append("This AI-generated assessment is intended to support, not replace,")
-        report_lines.append("clinical judgment. Always consider the full clinical context and")
-        report_lines.append(
+    def _append_disclaimer(self, lines: list[str]) -> None:
+        lines.append("IMPORTANT CLINICAL DISCLAIMER")
+        lines.append("-" * 30)
+        lines.append("This AI-generated assessment is intended to support, not replace,")
+        lines.append("clinical judgment. Always consider the full clinical context and")
+        lines.append(
             "conduct comprehensive clinical evaluation before making treatment decisions."
         )
-
-        return "\\n".join(report_lines)
 
     def _initialize_risk_factors(self) -> Dict[str, Dict[str, Any]]:
         """Initialize clinical risk factor mappings."""
