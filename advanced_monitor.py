@@ -149,8 +149,9 @@ class TrainingMonitor:
                     # Clean up the line to be valid JSON
                     json_str = line.replace("'", '"')
                     latest_metrics = json.loads(json_str)
-                except:
+                except Exception:
                     pass
+     pass
                     
         return {'progress': progress_info, 'metrics': latest_metrics}
 
