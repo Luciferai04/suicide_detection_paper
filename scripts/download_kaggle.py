@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import os
+import subprocess
 import sys
 import zipfile
 from pathlib import Path
-import subprocess
 
 DATASET="nikhileswarkomati/suicide-watch"
 

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import argparse
 import sys
-from pathlib import Path
-import requests
 import zipfile
 from io import BytesIO
+from pathlib import Path
+
+import requests
 
 URLS = [
     "https://data.mendeley.com/public-files/datasets/zz8j36y24f/files?download=1",

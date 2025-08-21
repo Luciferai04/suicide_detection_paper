@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 import argparse
-from pathlib import Path
 import sys
+from pathlib import Path
+
 # Ensure local package import without relying on editable install
 sys.path.append(str((Path(__file__).resolve().parents[1] / 'src')))
-import pandas as pd
 import csv
 import zipfile
-from io import BytesIO
-from suicide_detection.data_processing import Anonymizer
-from suicide_detection.data_processing import reddit_clean
+
+import pandas as pd
+
+from suicide_detection.data_processing import Anonymizer, reddit_clean
 
 
 def main():
@@ -70,9 +71,9 @@ def main():
         else:
             raise ValueError(f"Could not find text column in Kaggle CSV. Columns: {list(df.columns)[:10]} ...")
     label_col = None
-    for l in label_candidates:
-        if l in cols_lower:
-            label_col = cols_lower[l]
+    for lbl in label_candidates:
+        if lbl in cols_lower:
+            label_col = cols_lower[lbl]
             break
     if label_col is None:
         raise ValueError("Could not find label/class column in Kaggle CSV")

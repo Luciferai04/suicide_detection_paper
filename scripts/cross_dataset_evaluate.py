@@ -187,7 +187,7 @@ def plot_heatmap(
     
     # Save figure
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(output_path, dpi=150, bbox_inches='tight')
+    plt.savefig(output_path, dpi=150, bbox_inches="tight")
     plt.close()
     
     logger.info(f"Saved heatmap to {output_path}")

@@ -12,14 +12,13 @@ confirmation and can download only after --confirm is passed.
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import sys
+import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict
-
-import argparse
-import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = ROOT / "data/raw"

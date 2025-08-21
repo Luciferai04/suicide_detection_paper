@@ -3,11 +3,12 @@
 Background Training Progress Notifier
 Runs in background and generates notification files for training progress
 """
+import json
 import os
 import time
-import json
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
+
 
 def check_training_status():
     """Check current status and generate notification"""

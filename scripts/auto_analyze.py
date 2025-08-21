@@ -6,11 +6,11 @@ Auto-analysis watcher: monitors model outputs and triggers analyses.
 - Regenerates manuscript after all expected models are complete
 """
 
-import time
 import json
-from pathlib import Path
 import subprocess
+import time
 from datetime import datetime
+from pathlib import Path
 
 EXPECTED_MODELS = {"bert_mps", "bilstm_mps", "svm_mps"}
 OUTPUT_BASE = Path("results/model_outputs")

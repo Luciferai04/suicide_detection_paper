@@ -11,22 +11,20 @@ Comprehensive training script with:
 import argparse
 import json
 import logging
-from pathlib import Path
-from typing import Dict, List, Any, Optional
 import sys
+from pathlib import Path
+from typing import Any, Dict, List
 
 # Add src to path
 sys.path.append(str(Path(__file__).resolve().parents[1] / 'src'))
 
+import numpy as np
 import optuna
 import pandas as pd
-import numpy as np
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support, roc_auc_score
 import yaml
+from sklearn.metrics import accuracy_score, roc_auc_score
 
-from suicide_detection.training.train import main as train_main, prepare_splits
-from suicide_detection.data_processing.load import load_dataset_secure
-from suicide_detection.evaluation.metrics import compute_metrics, bootstrap_metrics
+from suicide_detection.evaluation.metrics import bootstrap_metrics, compute_metrics
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -153,7 +151,7 @@ def run_fairness_analysis(
     output_dir: Path
 ) -> Dict[str, Any]:
     """Run comprehensive fairness analysis."""
-    from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score
+    from sklearn.metrics import precision_score, recall_score
     
     fairness_results = {}
     

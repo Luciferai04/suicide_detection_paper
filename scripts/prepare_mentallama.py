@@ -17,9 +17,10 @@ Label mapping is conservative and keyword-based; manual review is recommended.
 """
 
 import argparse
-from pathlib import Path
 import json
 import re
+from pathlib import Path
+
 import pandas as pd
 
 # Local package
@@ -130,12 +131,18 @@ def main():
         test_i = li[:n_test]
         val_i = li[n_test:n_test + n_val]
         train_i = li[n_test + n_val:]
-        test_idx.append(test_i); val_idx.append(val_i); train_idx.append(train_i)
-    train_idx = np.concatenate(train_idx); val_idx = np.concatenate(val_idx); test_idx = np.concatenate(test_idx)
+        test_idx.append(test_i)
+        val_idx.append(val_i)
+        train_idx.append(train_i)
+    train_idx = np.concatenate(train_idx)
+    val_idx = np.concatenate(val_idx)
+    test_idx = np.concatenate(test_idx)
 
     def dump(idxs, name):
         pd.DataFrame({"text": X[idxs], "label": y[idxs]}).to_csv(out_dir / f"{name}.csv", index=False)
-    dump(train_idx, "train"); dump(val_idx, "val"); dump(test_idx, "test")
+    dump(train_idx, "train")
+    dump(val_idx, "val")
+    dump(test_idx, "test")
 
     audit.log_event("mentallama_prepare_done", {"n": int(len(df))})
     print(f"Wrote splits to {out_dir}")

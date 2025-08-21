@@ -8,14 +8,15 @@ Comprehensive monitoring system for SVM, BiLSTM, and BERT training with:
 - MLflow metrics monitoring
 - Performance analytics
 """
-import os
-import time
-import subprocess
 import json
+import os
 import re
-from pathlib import Path
+import subprocess
+import time
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Tuple
+from pathlib import Path
+from typing import Dict
+
 
 class TrainingMonitor:
     def __init__(self, timestamp="20250819_231757"):
@@ -86,9 +87,9 @@ class TrainingMonitor:
                         'physical_memory_kb': int(stats[5]),
                         'status': 'running'
                     }
-        except Exception as e:
+        except Exception:
             pass
-        return {'status': 'not_running'}
+        return {"status": "not_running"}
 
     def tail_log(self, logfile: str, lines: int = 10) -> str:
         """Get last N lines from log file"""
@@ -139,7 +140,7 @@ class TrainingMonitor:
                             'speed': speed
                         }
                         break
-                except:
+                except Exception:
                     pass
                     
             # Parse training metrics: {'loss': 0.446, 'grad_norm': 9.452, 'learning_rate': 1.997e-05, 'epoch': 0.0}
@@ -399,7 +400,7 @@ class TrainingMonitor:
         total_time = datetime.now() - self.start_time
         
         print(f"\n{'🎉' * 50}")
-        print(f"🏁 TRAINING SESSION COMPLETE")
+        print("🏁 TRAINING SESSION COMPLETE")
         print(f"{'🎉' * 50}")
         print(f"⏱️  Total Duration: {str(total_time).split('.')[0]}")
         print(f"📅 Session: {self.timestamp}")

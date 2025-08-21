@@ -2,9 +2,10 @@
 import argparse
 import json
 from pathlib import Path
+
 import numpy as np
 
-from suicide_detection.evaluation.stat_tests import mcnemar_test, bootstrap_ci
+from suicide_detection.evaluation.stat_tests import bootstrap_ci, mcnemar_test
 
 
 def main():
@@ -32,7 +33,7 @@ def main():
 
     stat, pval = mcnemar_test(y_true, y_pred_a, y_true, y_pred_b)
 
-    from sklearn.metrics import roc_auc_score, average_precision_score, f1_score
+    from sklearn.metrics import average_precision_score, f1_score, roc_auc_score
     auc_a, ci_auc_a = bootstrap_ci(lambda y, p: roc_auc_score(y, p), y_true, y_prob_a)
     auc_b, ci_auc_b = bootstrap_ci(lambda y, p: roc_auc_score(y, p), y_true, y_prob_b)
     pr_a, ci_pr_a = bootstrap_ci(lambda y, p: average_precision_score(y, p), y_true, y_prob_a)

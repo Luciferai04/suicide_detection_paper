@@ -6,18 +6,16 @@ Monitors all training processes and displays metrics.
 
 import os
 import re
-import json
-import time
-import threading
-from datetime import datetime
-from pathlib import Path
-from typing import Dict, List, Optional
-from collections import deque
+import socketserver
 import subprocess
+import threading
+import time
+from datetime import datetime
 
 # For web server
-from http.server import HTTPServer, SimpleHTTPRequestHandler
-import socketserver
+from http.server import SimpleHTTPRequestHandler
+from typing import Dict, Optional
+
 
 class TrainingMonitor:
     def __init__(self):

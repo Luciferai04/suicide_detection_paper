@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-from pathlib import Path
 import json
+from pathlib import Path
+
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]

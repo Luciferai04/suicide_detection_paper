@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 import argparse
-import json
 from pathlib import Path
+
 import pandas as pd
-import numpy as np
 
 from suicide_detection.bias_audit.audit import demographic_group_metrics
 
