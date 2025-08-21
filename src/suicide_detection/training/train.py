@@ -24,6 +24,136 @@ from suicide_detection.utils.logging import get_logger
 from suicide_detection.utils.seed import set_global_seed
 
 
+# -------------------------
+# Shared helpers
+# -------------------------
+
+def _svm_probability(clf, X):
+    """Return probability-like scores for SVM pipelines, robust to missing predict_proba."""
+    try:
+        pp = clf.predict_proba(X)
+        if pp.shape[1] == 2:
+            return pp[:, 1]
+        # Single probability column; assume class mapping not available
+        return pp.ravel()
+    except Exception:
+        # Fallback to decision_function and min-max scale
+        if hasattr(clf, "decision_function"):
+            import numpy as _np
+
+            dfc = clf.decision_function(X)
+            dfc = (dfc - dfc.min()) / (dfc.max() - dfc.min() + 1e-8)
+            return dfc
+        # ultimate fallback: zeros
+        import numpy as _np
+
+        return _np.zeros(len(X))
+
+
+def _evaluate_and_save(
+    best,
+    X,
+    y,
+    output_dir: Path,
+    split_name: str,
+    logger,
+    groups: Optional[dict] = None,
+):
+    """Evaluate a trained pipeline, save metrics/probs/labels/plots/fairness/standard outputs."""
+    import numpy as _np
+
+    y_prob = _svm_probability(best, X)
+    y_pred = (y_prob >= 0.5).astype(int)
+
+    res = compute_metrics(y, y_prob)
+    logger.info(f"SVM {split_name} metrics: {res}")
+
+    out_metrics = output_dir / f"svm_{split_name}_metrics.json"
+    out_metrics.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_metrics, "w") as f:
+        json.dump(res.__dict__, f, indent=2)
+
+    # Save probabilities and labels for downstream analyses / ensembles
+    try:
+        _np.save(output_dir / f"svm_{split_name}_probs.npy", _np.array(y_prob))
+        _np.save(output_dir / f"svm_{split_name}_y.npy", _np.array(y))
+    except Exception:
+        pass
+
+    # Standardized outputs for error analysis (for test split)
+    try:
+        if split_name == "test":
+            _np.save(output_dir / "test_probabilities.npy", _np.array(y_prob))
+            _np.save(output_dir / "test_labels.npy", _np.array(y))
+            _np.save(output_dir / "test_predictions.npy", _np.array(y_pred))
+    except Exception:
+        pass
+
+    # Fairness metrics if group labels provided
+    if groups and split_name in groups and groups[split_name] is not None:
+        gvec = groups[split_name]
+        fm = fairness_metrics(_np.array(y), _np.array(y_prob), _np.array(gvec))
+        with open(output_dir / f"svm_{split_name}_fairness.json", "w") as f:
+            json.dump(fm, f, indent=2)
+
+    # Plots
+    save_curves(y, y_prob, output_dir, f"svm_{split_name}")
+    save_confusion(y, y_pred, output_dir, f"svm_{split_name}")
+
+
+def _run_svm_cv(model, X_train, y_train, n_splits: int, logger, output_dir: Path):
+    from sklearn.model_selection import StratifiedKFold
+
+    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
+    metrics_cv = []
+    for fold, (tr_idx, va_idx) in enumerate(skf.split(X_train, y_train), 1):
+        X_tr, y_tr = X_train[tr_idx], y_train[tr_idx]
+        X_va, y_va = X_train[va_idx], y_train[va_idx]
+        clf = model.build()
+        clf.fit(X_tr, y_tr)
+        y_prob = _svm_probability(clf, X_va)
+        res = compute_metrics(y_va, y_prob)
+        metrics_cv.append(res.__dict__)
+        logger.info(f"Fold {fold}: F1={res.f1:.4f} AUC={res.roc_auc}")
+    # Save CV summary
+    out = output_dir / "svm_cv_metrics.json"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    with open(out, "w") as f:
+        json.dump({"folds": metrics_cv}, f, indent=2)
+
+
+def _save_linear_svm_feature_importance(best, X_train, y_train, output_dir: Path, logger):
+    """Train a linear SVM on vectorized features to export indicative n-grams."""
+    try:
+        from sklearn.svm import LinearSVC
+        import numpy as _np
+
+        features = best.named_steps["features"]
+        X_train_vec = features.transform(X_train)
+        lin = LinearSVC(class_weight="balanced")
+        lin.fit(X_train_vec, y_train)
+
+        # Map feature weights to n-grams
+        if hasattr(features, "get_feature_names_out"):
+            feat_names = features.get_feature_names_out()
+        else:
+            feat_names = _np.array([f"f_{i}" for i in range(X_train_vec.shape[1])])
+        coefs = lin.coef_.ravel()
+        order_pos = _np.argsort(-coefs)[:50]
+        order_neg = _np.argsort(coefs)[:50]
+        rows = [(feat_names[i], float(coefs[i]), "positive") for i in order_pos]
+        rows += [(feat_names[i], float(coefs[i]), "negative") for i in order_neg]
+        out_fp = output_dir / "svm_feature_importance.csv"
+        out_fp.parent.mkdir(parents=True, exist_ok=True)
+        with open(out_fp, "w") as f:
+            f.write("feature,weight,polarity\n")
+            for name, w, pol in rows:
+                f.write(f"{name},{w},{pol}\n")
+        logger.info(f"Saved feature importance to {out_fp}")
+    except Exception as e:
+        logger.warning(f"Feature importance extraction failed: {e}")
+
+
 def device_auto(prefer: Optional[str] = None) -> torch.device:
     """Select best available device with optional preference.
 
@@ -105,30 +235,7 @@ def run_svm(
 
     if use_cv:
         logger.info(f"Running Stratified {n_splits}-fold CV for SVM baseline...")
-        skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
-        metrics_cv = []
-        for fold, (tr_idx, va_idx) in enumerate(skf.split(X_train, y_train), 1):
-            X_tr, y_tr = X_train[tr_idx], y_train[tr_idx]
-            X_va, y_va = X_train[va_idx], y_train[va_idx]
-            clf = model.build()
-            clf.fit(X_tr, y_tr)
-            try:
-                y_prob = clf.predict_proba(X_va)[:, 1]
-            except Exception:
-                # decision function fallback
-                if hasattr(clf, "decision_function"):
-                    dfc = clf.decision_function(X_va)
-                    y_prob = (dfc - dfc.min()) / (dfc.max() - dfc.min() + 1e-8)
-                else:
-                    y_prob = np.zeros(len(X_va))
-            res = compute_metrics(y_va, y_prob)
-            metrics_cv.append(res.__dict__)
-            logger.info(f"Fold {fold}: F1={res.f1:.4f} AUC={res.roc_auc}")
-        # Save CV summary
-        out = output_dir / "svm_cv_metrics.json"
-        output_dir.mkdir(parents=True, exist_ok=True)
-        with open(out, "w") as f:
-            json.dump({"folds": metrics_cv}, f, indent=2)
+        _run_svm_cv(model, X_train, y_train, n_splits, logger, output_dir)
         # After CV, fit on full train set
 
     if not grid:
@@ -152,100 +259,10 @@ def run_svm(
         logger.info(f"Best params: {gs.best_params_}")
 
     # Post-hoc interpretability: train linear SVM on fixed TF-IDF features to extract feature importances
-    try:
-        from sklearn.svm import LinearSVC
-
-        features = best.named_steps["features"]
-        X_train_vec = features.transform(X_train)
-        lin = LinearSVC(class_weight="balanced")
-        lin.fit(X_train_vec, y_train)
-        # Map feature weights to n-grams
-        feat_names = []
-        # Attempt to get names from FeatureUnion
-        if hasattr(features, "get_feature_names_out"):
-            feat_names = features.get_feature_names_out()
-        else:
-            feat_names = np.array([f"f_{i}" for i in range(X_train_vec.shape[1])])
-        coefs = lin.coef_.ravel()
-        order_pos = np.argsort(-coefs)[:50]
-        order_neg = np.argsort(coefs)[:50]
-        rows = [(feat_names[i], float(coefs[i]), "positive") for i in order_pos]
-        rows += [(feat_names[i], float(coefs[i]), "negative") for i in order_neg]
-        out_fp = output_dir / "svm_feature_importance.csv"
-        out_fp.parent.mkdir(parents=True, exist_ok=True)
-        with open(out_fp, "w") as f:
-            f.write("feature,weight,polarity\n")
-            for name, w, pol in rows:
-                f.write(f"{name},{w},{pol}\n")
-        logger.info(f"Saved feature importance to {out_fp}")
-    except Exception as e:
-        logger.warning(f"Feature importance extraction failed: {e}")
+    _save_linear_svm_feature_importance(best, X_train, y_train, output_dir, logger)
 
     for split_name, X, y in [("val", X_val, y_val), ("test", X_test, y_test)]:
-        # Robust probability extraction even for single-class classifiers
-        try:
-            pp = best.predict_proba(X)
-            if pp.shape[1] == 2:
-                y_prob = pp[:, 1]
-            else:
-                # Single probability column -> determine which class it represents
-                cls_idx = None
-                try:
-                    clf = best.named_steps.get("clf") if hasattr(best, "named_steps") else None
-                    classes = getattr(clf, "classes_", None)
-                    if classes is not None and len(classes) == 1:
-                        cls_idx = int(classes[0])
-                except Exception:
-                    cls_idx = 0
-                y_prob = np.ones(len(X)) if cls_idx == 1 else np.zeros(len(X))
-        except Exception:
-            # Fallback: use decision_function if available, then min-max scale
-            if hasattr(best, "decision_function"):
-                dfc = best.decision_function(X)
-                dfc = (dfc - dfc.min()) / (dfc.max() - dfc.min() + 1e-8)
-                y_prob = dfc
-            else:
-                # ultimate fallback: zeros
-                y_prob = np.zeros(len(X))
-        y_pred = (y_prob >= 0.5).astype(int)
-        res = compute_metrics(y, y_prob)
-        logger.info(f"SVM {split_name} metrics: {res}")
-        out = output_dir / f"svm_{split_name}_metrics.json"
-        out.parent.mkdir(parents=True, exist_ok=True)
-        with open(out, "w") as f:
-            json.dump(res.__dict__, f, indent=2)
-        # Save probabilities and labels for downstream analyses / ensembles
-        try:
-            import numpy as _np
-
-            _np.save(output_dir / f"svm_{split_name}_probs.npy", _np.array(y_prob))
-            _np.save(output_dir / f"svm_{split_name}_y.npy", _np.array(y))
-        except Exception:
-            pass
-        # Standardized outputs for error analysis
-        try:
-            if split_name == "test":
-                np.save(output_dir / "test_probabilities.npy", np.array(y_prob))
-                np.save(output_dir / "test_labels.npy", np.array(y))
-                np.save(output_dir / "test_predictions.npy", np.array(y_pred))
-                # Save texts if available
-                try:
-                    texts_list = list(map(str, X))
-                    (output_dir / "test_texts.json").write_text(
-                        json.dumps(texts_list, ensure_ascii=False, indent=2)
-                    )
-                except Exception:
-                    pass
-        except Exception:
-            pass
-        # Fairness metrics if groups available
-        if groups and split_name in groups and groups[split_name] is not None:
-            gvec = groups[split_name]
-            fm = fairness_metrics(np.array(y), np.array(y_prob), np.array(gvec))
-            with open(output_dir / f"svm_{split_name}_fairness.json", "w") as f:
-                json.dump(fm, f, indent=2)
-        save_curves(y, y_prob, output_dir, f"svm_{split_name}")
-        save_confusion(y, y_pred, output_dir, f"svm_{split_name}")
+        _evaluate_and_save(best, X, y, output_dir, split_name, logger, groups)
 
 
 def run_bilstm(
@@ -388,28 +405,32 @@ def run_bilstm(
         y_prob = torch.cat(ps).numpy()
         return y_true, y_prob
 
-    best_f1, patience, max_patience = 0.0, 0, early_patience
-    for epoch in range(1, num_epochs + 1):
-        model.train()
-        for ids, attn, labels in train_loader:
-            ids, attn, labels = ids.to(device), attn.to(device), labels.to(device)
-            optimizer.zero_grad()
-            logits = model(ids, attn)
-            loss = criterion(logits, labels)
-            loss.backward()
-            optimizer.step()
-        val_res = evaluate(val_loader)
-        logger.info(f"BiLSTM epoch {epoch} val F1={val_res.f1:.4f}")
-        if val_res.f1 > best_f1 + 1e-4:
-            best_f1 = val_res.f1
-            patience = 0
-            out_model = output_dir / "bilstm.pt"
-            out_model.parent.mkdir(parents=True, exist_ok=True)
-            torch.save(model.state_dict(), out_model)
-        else:
-            patience += 1
-            if patience > max_patience:
-                break
+    def _train_bilstm(model):
+        best_f1, patience, max_patience = 0.0, 0, early_patience
+        for epoch in range(1, num_epochs + 1):
+            model.train()
+            for ids, attn, labels in train_loader:
+                ids, attn, labels = ids.to(device), attn.to(device), labels.to(device)
+                optimizer.zero_grad()
+                logits = model(ids, attn)
+                loss = criterion(logits, labels)
+                loss.backward()
+                optimizer.step()
+            val_res = evaluate(val_loader)
+            logger.info(f"BiLSTM epoch {epoch} val F1={val_res.f1:.4f}")
+            if val_res.f1 > best_f1 + 1e-4:
+                best_f1 = val_res.f1
+                patience = 0
+                out_model = output_dir / "bilstm.pt"
+                out_model.parent.mkdir(parents=True, exist_ok=True)
+                torch.save(model.state_dict(), out_model)
+            else:
+                patience += 1
+                if patience > max_patience:
+                    break
+        return model
+
+    model = _train_bilstm(model)
 
     # Final eval
     res_val = evaluate(val_loader)
@@ -462,37 +483,37 @@ def run_bilstm(
     save_confusion(yt, (pt >= 0.5).astype(int), output_dir, "bilstm_test")
 
     # Attention heatmap visualization for first few validation samples
-    try:
+    def _save_bilstm_attention_visualizations():
+        try:
+            import matplotlib.pyplot as plt
+            vis_dir = output_dir / "attention"
+            vis_dir.mkdir(parents=True, exist_ok=True)
+            count = 0
+            model.eval()
+            with torch.no_grad():
+                for ids, attn, _labels in val_loader:
+                    ids, attn = ids.to(device), attn.to(device)
+                    logits = model(ids, attn)
+                    attn_w = getattr(model, "last_attn", None)
+                    if attn_w is None:
+                        break
+                    attn_w = attn_w.cpu().numpy()
+                    for i in range(min(attn_w.shape[0], 5 - count)):
+                        plt.figure(figsize=(8, 2))
+                        plt.imshow(attn_w[i][None, : ids.shape[1]], aspect="auto", cmap="viridis")
+                        plt.colorbar()
+                        plt.yticks([])
+                        plt.xlabel("Token index")
+                        plt.title("BiLSTM Attention Weights (sample {})".format(i))
+                        plt.savefig(vis_dir / f"val_attn_{count+i}.png", dpi=150, bbox_inches="tight")
+                        plt.close()
+                    count += min(attn_w.shape[0], 5 - count)
+                    if count >= 5:
+                        break
+        except Exception as e:
+            logger.warning(f"Failed to save attention visualizations: {e}")
 
-        import matplotlib.pyplot as plt
-
-        vis_dir = output_dir / "attention"
-        vis_dir.mkdir(parents=True, exist_ok=True)
-        # Take up to 5 samples
-        count = 0
-        model.eval()
-        with torch.no_grad():
-            for ids, attn, _labels in val_loader:
-                ids, attn = ids.to(device), attn.to(device)
-                logits = model(ids, attn)
-                attn_w = getattr(model, "last_attn", None)
-                if attn_w is None:
-                    break
-                attn_w = attn_w.cpu().numpy()
-                for i in range(min(attn_w.shape[0], 5 - count)):
-                    plt.figure(figsize=(8, 2))
-                    plt.imshow(attn_w[i][None, : ids.shape[1]], aspect="auto", cmap="viridis")
-                    plt.colorbar()
-                    plt.yticks([])
-                    plt.xlabel("Token index")
-                    plt.title("BiLSTM Attention Weights (sample {})".format(i))
-                    plt.savefig(vis_dir / f"val_attn_{count+i}.png", dpi=150, bbox_inches="tight")
-                    plt.close()
-                count += min(attn_w.shape[0], 5 - count)
-                if count >= 5:
-                    break
-    except Exception as e:
-        logger.warning(f"Failed to save attention visualizations: {e}")
+    _save_bilstm_attention_visualizations()
 
     for split, res in [("val", res_val), ("test", res_test)]:
         with open(output_dir / f"bilstm_{split}_metrics.json", "w") as f:
@@ -635,27 +656,30 @@ def run_bert(
     y_prob = torch.softmax(torch.tensor(preds.predictions), dim=-1)[:, 1].numpy()
     res_test = compute_metrics(np.array(y_test), y_prob)
 
-    # Save probabilities and labels for downstream analyses / ensembles
-    try:
-        y_val_prob = trainer.predict(val_ds).predictions
-        y_val_prob = torch.softmax(torch.tensor(y_val_prob), dim=-1)[:, 1].numpy()
-        np.save(output_dir / "bert_val_probs.npy", np.array(y_val_prob))
-        np.save(output_dir / "bert_val_y.npy", np.array(y_val))
-        np.save(output_dir / "bert_test_probs.npy", np.array(y_prob))
-        np.save(output_dir / "bert_test_y.npy", np.array(y_test))
-        # Standardized outputs for error analysis
-        np.save(output_dir / "test_probabilities.npy", np.array(y_prob))
-        np.save(output_dir / "test_labels.npy", np.array(y_test))
-        np.save(output_dir / "test_predictions.npy", (np.array(y_prob) >= 0.5).astype(int))
+    def _save_bert_outputs():
+        # Save probabilities and labels for downstream analyses / ensembles
         try:
-            test_texts = list(map(str, X_test))
-            (output_dir / "test_texts.json").write_text(
-                json.dumps(test_texts, ensure_ascii=False, indent=2)
-            )
+            y_val_prob_local = trainer.predict(val_ds).predictions
+            y_val_prob_local = torch.softmax(torch.tensor(y_val_prob_local), dim=-1)[:, 1].numpy()
+            np.save(output_dir / "bert_val_probs.npy", np.array(y_val_prob_local))
+            np.save(output_dir / "bert_val_y.npy", np.array(y_val))
+            np.save(output_dir / "bert_test_probs.npy", np.array(y_prob))
+            np.save(output_dir / "bert_test_y.npy", np.array(y_test))
+            # Standardized outputs for error analysis
+            np.save(output_dir / "test_probabilities.npy", np.array(y_prob))
+            np.save(output_dir / "test_labels.npy", np.array(y_test))
+            np.save(output_dir / "test_predictions.npy", (np.array(y_prob) >= 0.5).astype(int))
+            try:
+                test_texts = list(map(str, X_test))
+                (output_dir / "test_texts.json").write_text(
+                    json.dumps(test_texts, ensure_ascii=False, indent=2)
+                )
+            except Exception:
+                pass
         except Exception:
             pass
-    except Exception:
-        pass
+
+    _save_bert_outputs()
 
     output_dir.mkdir(parents=True, exist_ok=True)
     with open(output_dir / "bert_val_metrics.json", "w") as f:
@@ -664,26 +688,88 @@ def run_bert(
         json.dump(res_test.__dict__, f, indent=2)
 
     # Plots for BERT
-    y_val_prob = trainer.predict(val_ds).predictions
-    y_val_prob = torch.softmax(torch.tensor(y_val_prob), dim=-1)[:, 1].numpy()
-    y_val_true = np.array(y_val)
-    save_curves(y_val_true, y_val_prob, output_dir, "bert_val")
-    save_confusion(y_val_true, (y_val_prob >= 0.5).astype(int), output_dir, "bert_val")
-    save_curves(np.array(y_test), y_prob, output_dir, "bert_test")
-    save_confusion(np.array(y_test), (y_prob >= 0.5).astype(int), output_dir, "bert_test")
+    def _save_bert_plots_and_fairness():
+        y_val_prob_local = trainer.predict(val_ds).predictions
+        y_val_prob_local = torch.softmax(torch.tensor(y_val_prob_local), dim=-1)[:, 1].numpy()
+        y_val_true = np.array(y_val)
+        save_curves(y_val_true, y_val_prob_local, output_dir, "bert_val")
+        save_confusion(y_val_true, (y_val_prob_local >= 0.5).astype(int), output_dir, "bert_val")
+        save_curves(np.array(y_test), y_prob, output_dir, "bert_test")
+        save_confusion(np.array(y_test), (y_prob >= 0.5).astype(int), output_dir, "bert_test")
 
-    # Fairness outputs if group labels provided
-    if groups:
-        if groups.get("val") is not None:
-            y_val_prob = trainer.predict(val_ds).predictions
-            y_val_prob = torch.softmax(torch.tensor(y_val_prob), dim=-1)[:, 1].numpy()
-            fm = fairness_metrics(np.array(y_val), np.array(y_val_prob), np.array(groups["val"]))
-            with open(output_dir / "bert_val_fairness.json", "w") as f:
-                json.dump(fm, f, indent=2)
-        if groups.get("test") is not None:
-            fm = fairness_metrics(np.array(y_test), np.array(y_prob), np.array(groups["test"]))
-            with open(output_dir / "bert_test_fairness.json", "w") as f:
-                json.dump(fm, f, indent=2)
+        # Fairness outputs if group labels provided
+        if groups:
+            if groups.get("val") is not None:
+                fm = fairness_metrics(np.array(y_val), np.array(y_val_prob_local), np.array(groups["val"]))
+                with open(output_dir / "bert_val_fairness.json", "w") as f:
+                    json.dump(fm, f, indent=2)
+            if groups.get("test") is not None:
+                fm = fairness_metrics(np.array(y_test), np.array(y_prob), np.array(groups["test"]))
+                with open(output_dir / "bert_test_fairness.json", "w") as f:
+                    json.dump(fm, f, indent=2)
+
+    _save_bert_plots_and_fairness()
+
+
+def _load_data(args, logger):
+    """Load and prepare train/val/test splits and optional group vectors."""
+    df = None
+    train = val = test = None
+    group_vectors = {"train": None, "val": None, "test": None}
+
+    if args.dataset:
+        split_dir = Path(f"data/{args.dataset}/splits")
+        train_df = pd.read_csv(split_dir / "train.csv")
+        val_df = pd.read_csv(split_dir / "val.csv")
+        test_df = pd.read_csv(split_dir / "test.csv")
+        train = (train_df["text"].values, train_df["label"].values)
+        val = (val_df["text"].values, val_df["label"].values)
+        test = (test_df["text"].values, test_df["label"].values)
+    elif args.train_path and args.val_path and args.test_path:
+        train_df = pd.read_csv(args.train_path)
+        val_df = pd.read_csv(args.val_path)
+        test_df = pd.read_csv(args.test_path)
+        train = (train_df["text"].values, train_df["label"].values)
+        val = (val_df["text"].values, val_df["label"].values)
+        test = (test_df["text"].values, test_df["label"].values)
+    else:
+        data_path = Path(args.data_path)
+        df = load_dataset_secure(data_path)
+        if df["label"].dtype != int and df["label"].dtype != bool:
+            le = LabelEncoder()
+            df["label"] = le.fit_transform(df["label"].astype(str))
+        train, val, test = prepare_splits(
+            df,
+            temporal=args.temporal_split,
+            timestamp_col=args.timestamp_col,
+        )
+        if args.group_col and args.group_col in df.columns:
+            group_vectors = {"train": None, "val": None, "test": None}
+    return train, val, test, group_vectors
+
+
+def _run_selected_model(args, train, val, test, output_dir: Path, logger, cfg_all, group_vectors, use_cv, n_splits, ml_enabled):
+    """Dispatch to model-specific training and handle optional MLflow logging."""
+    def _log_metrics(split_prefix: str, metrics_path: Path):
+        if ml_enabled and metrics_path.exists():
+            import json as _json
+            m = _json.loads(metrics_path.read_text())
+            for k, v in m.items() if isinstance(m, dict) else []:
+                if isinstance(v, (int, float)):
+                    mlflow.log_metric(f"{split_prefix}_{k}", float(v))
+
+    if args.model == "svm":
+        run_svm(train, val, test, output_dir, logger, groups=group_vectors, use_cv=use_cv, n_splits=n_splits)
+        _log_metrics("val", output_dir / "svm_val_metrics.json")
+        _log_metrics("test", output_dir / "svm_test_metrics.json")
+    elif args.model == "bilstm":
+        run_bilstm(train, val, test, output_dir, logger, groups=group_vectors, cfg_overrides=cfg_all, prefer_device=args.prefer_device)
+        _log_metrics("val", output_dir / "bilstm_val_metrics.json")
+        _log_metrics("test", output_dir / "bilstm_test_metrics.json")
+    elif args.model == "bert":
+        run_bert(train, val, test, output_dir, logger, model_name=args.bert_model_name, groups=group_vectors, cfg_overrides=cfg_all, prefer_device=args.prefer_device)
+        _log_metrics("val", output_dir / "bert_val_metrics.json")
+        _log_metrics("test", output_dir / "bert_test_metrics.json")
 
 
 def main():
@@ -758,48 +844,8 @@ def main():
         except Exception as e:
             logger.warning(f"Failed to read MLflow config: {e}")
 
-    # Prepare data: if dataset flag or explicit split paths are provided, skip loading a monolithic CSV
-    df = None
-    train = val = test = None
-    group_vectors = {"train": None, "val": None, "test": None}
-
-    # If dataset flag is provided, use standard split files
-    if args.dataset:
-        split_dir = Path(f"data/{args.dataset}/splits")
-        train_df = pd.read_csv(split_dir / "train.csv")
-        val_df = pd.read_csv(split_dir / "val.csv")
-        test_df = pd.read_csv(split_dir / "test.csv")
-        train = (train_df["text"].values, train_df["label"].values)
-        val = (val_df["text"].values, val_df["label"].values)
-        test = (test_df["text"].values, test_df["label"].values)
-    elif args.train_path and args.val_path and args.test_path:
-        train_df = pd.read_csv(args.train_path)
-        val_df = pd.read_csv(args.val_path)
-        test_df = pd.read_csv(args.test_path)
-        train = (train_df["text"].values, train_df["label"].values)
-        val = (val_df["text"].values, val_df["label"].values)
-        test = (test_df["text"].values, test_df["label"].values)
-    else:
-        # Load single CSV and create splits
-        data_path = Path(args.data_path)
-        df = load_dataset_secure(data_path)
-        # Ensure binary labels 0/1
-        if df["label"].dtype != int and df["label"].dtype != bool:
-            le = LabelEncoder()
-            df["label"] = le.fit_transform(df["label"].astype(str))
-
-        train, val, test = prepare_splits(
-            df,
-            temporal=args.temporal_split,
-            timestamp_col=args.timestamp_col,
-        )
-        # Set group vectors from df if requested
-        if args.group_col and args.group_col in df.columns:
-            group_vectors = {
-                "train": None,
-                "val": None,
-                "test": None,
-            }
+    # Prepare data
+    train, val, test, group_vectors = _load_data(args, logger)
 
     output_dir = Path(args.output_dir)
 
@@ -815,91 +861,33 @@ def main():
             if args.temporal_split:
                 mlflow.log_param("temporal_split", True)
                 mlflow.log_param("timestamp_col", args.timestamp_col)
-            if args.model == "svm":
-                run_svm(train, val, test, output_dir, logger, use_cv=use_cv, n_splits=n_splits)
-                for split in ["val", "test"]:
-                    fp = output_dir / f"svm_{split}_metrics.json"
-                    if fp.exists():
-                        import json as _json
-
-                        m = _json.loads(fp.read_text())
-                        for k, v in m.items():
-                            if isinstance(v, (int, float)):
-                                mlflow.log_metric(f"{split}_{k}", float(v))
-            elif args.model == "bilstm":
-                run_bilstm(
-                    train,
-                    val,
-                    test,
-                    output_dir,
-                    logger,
-                    cfg_overrides=cfg_all,
-                    prefer_device=args.prefer_device,
-                )
-                for split in ["val", "test"]:
-                    fp = output_dir / f"bilstm_{split}_metrics.json"
-                    if fp.exists():
-                        import json as _json
-
-                        m = _json.loads(fp.read_text())
-                        for k, v in m.items():
-                            if isinstance(v, (int, float)):
-                                mlflow.log_metric(f"{split}_{k}", float(v))
-            elif args.model == "bert":
-                run_bert(
-                    train,
-                    val,
-                    test,
-                    output_dir,
-                    logger,
-                    model_name=args.bert_model_name,
-                    cfg_overrides=cfg_all,
-                    prefer_device=args.prefer_device,
-                )
-                for split in ["val", "test"]:
-                    fp = output_dir / f"bert_{split}_metrics.json"
-                    if fp.exists():
-                        import json as _json
-
-                        m = _json.loads(fp.read_text())
-                        for k, v in m.items() if isinstance(m, dict) else []:
-                            if isinstance(v, (int, float)):
-                                mlflow.log_metric(f"{split}_{k}", float(v))
+            _run_selected_model(
+                args,
+                train,
+                val,
+                test,
+                output_dir,
+                logger,
+                cfg_all,
+                group_vectors,
+                use_cv,
+                n_splits,
+                ml_enabled=True,
+            )
     else:
-        if args.model == "svm":
-            run_svm(
-                train,
-                val,
-                test,
-                output_dir,
-                logger,
-                groups=group_vectors,
-                use_cv=use_cv,
-                n_splits=n_splits,
-            )
-        elif args.model == "bilstm":
-            run_bilstm(
-                train,
-                val,
-                test,
-                output_dir,
-                logger,
-                groups=group_vectors,
-                cfg_overrides=cfg_all,
-                prefer_device=args.prefer_device,
-            )
-        elif args.model == "bert":
-            run_bert(
-                train,
-                val,
-                test,
-                output_dir,
-                logger,
-                model_name=args.bert_model_name,
-                groups=group_vectors,
-                cfg_overrides=cfg_all,
-                prefer_device=args.prefer_device,
-            )
+        _run_selected_model(
+            args,
+            train,
+            val,
+            test,
+            output_dir,
+            logger,
+            cfg_all,
+            group_vectors,
+            use_cv,
+            n_splits,
+            ml_enabled=False,
+        )
 
 
 if __name__ == "__main__":
