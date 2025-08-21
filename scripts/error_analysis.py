@@ -656,21 +656,21 @@ Calibration:
         """Save all analysis results."""
         
         # Save error analysis
-        with open(self.analysis_dir / "error_analysis.json", 'w') as f:
+        with open(self.analysis_dir / "error_analysis.json", "w") as f:
             json.dump(error_analysis, f, indent=2, default=str)
         
         # Save confidence analysis
         if confidence_analysis:
-            with open(self.analysis_dir / "confidence_analysis.json", 'w') as f:
+            with open(self.analysis_dir / "confidence_analysis.json", "w") as f:
                 json.dump(confidence_analysis, f, indent=2)
         
         # Save text analysis
         if text_analysis:
-            with open(self.analysis_dir / "text_pattern_analysis.json", 'w') as f:
+            with open(self.analysis_dir / "text_pattern_analysis.json", "w") as f:
                 json.dump(text_analysis, f, indent=2)
         
         # Save report
-        with open(self.analysis_dir / "error_analysis_report.txt", 'w') as f:
+        with open(self.analysis_dir / "error_analysis_report.txt", "w") as f:
             f.write(report)
         
         print(f"Saved all error analysis results to {self.analysis_dir}")
