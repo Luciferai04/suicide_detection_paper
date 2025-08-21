@@ -1022,20 +1022,8 @@ def main():
     )
     args = ap.parse_args()
 
-    # Load configs if provided
-    cfg_default: Dict[str, Any] = {}
-    cfg_model: Dict[str, Any] = {}
-    if args.default_config and Path(args.default_config).exists():
-        try:
-            cfg_default = yaml.safe_load(Path(args.default_config).read_text()) or {}
-        except Exception:
-            cfg_default = {}
-    if args.config and Path(args.config).exists():
-        try:
-            cfg_model = yaml.safe_load(Path(args.config).read_text()) or {}
-        except Exception:
-            cfg_model = {}
-    cfg_all = {**cfg_default, **cfg_model}
+    # Load configs and set up logging
+    cfg_all = _load_configs(args.default_config, args.config)
 
     # Configure logger (optionally to file)
     log_file = None
@@ -1047,18 +1035,7 @@ def main():
     set_global_seed(int(cfg_all.get("seed", 42)))
 
     # Optional MLflow setup
-    mlflow_cfg_path = Path("configs/mlflow.yaml")
-    ml_enabled = False
-    if mlflow_cfg_path.exists():
-        try:
-            cfg = yaml.safe_load(mlflow_cfg_path.read_text())
-            ml_enabled = cfg.get("enabled", False)
-            if ml_enabled:
-                tracking_uri = cfg.get("tracking_uri", "file:./mlruns")
-                mlflow.set_tracking_uri(tracking_uri)
-                mlflow.set_experiment(cfg.get("experiment_name", "suicide_detection_research"))
-        except Exception as e:
-            logger.warning(f"Failed to read MLflow config: {e}")
+    ml_enabled = _setup_mlflow(logger)
 
     # Prepare data
     train, val, test, group_vectors = _load_data(args, logger)
