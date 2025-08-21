@@ -151,7 +151,6 @@ class TrainingMonitor:
                     latest_metrics = json.loads(json_str)
                 except Exception:
                     pass
-     pass
                     
         return {'progress': progress_info, 'metrics': latest_metrics}
 
@@ -224,7 +223,7 @@ class TrainingMonitor:
         try:
             with open(config['pid_file'], 'r') as f:
                 pid = int(f.read().strip())
-        except:
+        except Exception:
             return {"status": "error", "message": "Could not read PID file"}
             
         # Check if process is alive
