@@ -10,8 +10,8 @@ legitimate access.
 """
 
 import argparse
-from pathlib import Path
 import sys
+from pathlib import Path
 
 from suicide_detection.ethics.audit_logging import AuditLogger
 

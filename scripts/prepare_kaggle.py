@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 import argparse
-from pathlib import Path
 import sys
+from pathlib import Path
+
 # Ensure local package import without relying on editable install
 sys.path.append(str((Path(__file__).resolve().parents[1] / 'src')))
-import pandas as pd
 import csv
 import zipfile
-from io import BytesIO
-from suicide_detection.data_processing import Anonymizer
-from suicide_detection.data_processing import reddit_clean
+
+import pandas as pd
+
+from suicide_detection.data_processing import Anonymizer, reddit_clean
 
 
 def main():

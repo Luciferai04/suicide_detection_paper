@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import subprocess
-from pathlib import Path
 import sys
+from pathlib import Path
 
 REPO = "https://github.com/SteveKGYang/MentalLLaMA.git"
 

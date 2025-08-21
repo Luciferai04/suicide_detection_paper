@@ -9,8 +9,8 @@ legitimate access. This keeps us compliant while providing a runnable skeleton.
 """
 
 import argparse
-from pathlib import Path
 import sys
+from pathlib import Path
 
 from suicide_detection.ethics.audit_logging import AuditLogger
 

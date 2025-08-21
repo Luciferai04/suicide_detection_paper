@@ -4,11 +4,11 @@ Training Monitor Script
 Monitors SVM, BiLSTM, and BERT training progress and provides periodic updates.
 """
 import os
-import time
 import subprocess
-import json
-from pathlib import Path
+import time
 from datetime import datetime
+from pathlib import Path
+
 
 def check_process_alive(pid):
     """Check if process is still running"""
@@ -36,7 +36,7 @@ def get_process_stats(pid):
                     'time': stats[3],
                     'status': 'running'
                 }
-    except Exception as e:
+    except Exception:
         pass
     return {'status': 'not_running'}
 

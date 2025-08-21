@@ -4,16 +4,17 @@ Watchdog for MPS training stability.
 Monitors processes, detects crashes, and automatically recovers.
 """
 
-import os
-import sys
 import json
-import time
-import psutil
+import os
 import signal
 import subprocess
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
+
+import psutil
+
 
 class TrainingWatchdog:
     def __init__(self):

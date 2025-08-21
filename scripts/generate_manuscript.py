@@ -4,9 +4,8 @@ Generate a manuscript-style markdown draft from collected results.
 Automatically finds the latest results and embeds available figures.
 """
 import json
-from pathlib import Path
 from datetime import datetime
-import glob
+from pathlib import Path
 
 RESULTS_DIR = Path("results")
 PLOTS_DIR = RESULTS_DIR / "plots"
@@ -52,7 +51,7 @@ def main():
             return "N/A"
 
     lines = []
-    lines.append(f"# Suicide Risk Detection: Comparative Analysis of SVM, BiLSTM, and BERT")
+    lines.append("# Suicide Risk Detection: Comparative Analysis of SVM, BiLSTM, and BERT")
     lines.append("")
     lines.append("\\bibliographystyle{IEEEtran}")
     lines.append("\\bstctlcite{BSTcontrol}")

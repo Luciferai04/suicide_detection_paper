@@ -1,6 +1,6 @@
+import csv
 from pathlib import Path
 
-import csv
 import pandas as pd
 
 from .anonymize import Anonymizer

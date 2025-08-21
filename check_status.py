@@ -3,8 +3,10 @@
 Quick Training Status Check
 Run this anytime to get current training progress
 """
-from advanced_monitor import TrainingMonitor
 import sys
+
+from advanced_monitor import TrainingMonitor
+
 
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == "--detailed":

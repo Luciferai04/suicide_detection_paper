@@ -3,10 +3,10 @@
 Auto Collector: waits for SVM and BiLSTM completion, then runs results collection.
 """
 import os
-import time
 import subprocess
-from pathlib import Path
+import time
 from datetime import datetime
+from pathlib import Path
 
 SESSION = "20250819_231757"
 LOGS = Path("logs")

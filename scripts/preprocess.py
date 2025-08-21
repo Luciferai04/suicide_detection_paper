@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import argparse
 from pathlib import Path
-import pandas as pd
 
 from suicide_detection.data_processing.load import load_dataset_secure
 

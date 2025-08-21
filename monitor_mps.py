@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Monitor MPS training progress for all models."""
 
-import os
-import time
 import json
+import os
+import subprocess
 from datetime import datetime
 from pathlib import Path
-import subprocess
+
 
 def get_latest_log_lines(log_path, n=5):
     """Get last n lines from a log file."""
@@ -60,7 +60,7 @@ def main():
         # Get latest log lines
         latest = get_latest_log_lines(log_path, 3)
         if latest:
-            print(f"  Latest activity:")
+            print("  Latest activity:")
             for line in latest.strip().split('\n'):
                 if line.strip():
                     # Truncate long lines
@@ -68,7 +68,7 @@ def main():
                         line = line[:97] + "..."
                     print(f"    {line}")
         else:
-            print(f"  No log output yet")
+            print("  No log output yet")
     
     # Check for completed training
     print("\n" + "-"*80)

@@ -17,9 +17,10 @@ Label mapping is conservative and keyword-based; manual review is recommended.
 """
 
 import argparse
-from pathlib import Path
 import json
 import re
+from pathlib import Path
+
 import pandas as pd
 
 # Local package

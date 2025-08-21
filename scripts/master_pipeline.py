@@ -19,9 +19,9 @@ import yaml
 
 try:
     from rich.console import Console
+    from rich.logging import RichHandler
     from rich.progress import Progress, SpinnerColumn, TextColumn, TimeElapsedColumn
     from rich.table import Table
-    from rich.logging import RichHandler
     RICH_AVAILABLE = True
 except ImportError:
     RICH_AVAILABLE = False
