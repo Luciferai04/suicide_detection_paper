@@ -89,7 +89,7 @@ class TrainingMonitor:
                     }
         except Exception:
             pass
-        return {'status': 'not_running'}
+        return {"status": "not_running"}
 
     def tail_log(self, logfile: str, lines: int = 10) -> str:
         """Get last N lines from log file"""
@@ -140,7 +140,7 @@ class TrainingMonitor:
                             'speed': speed
                         }
                         break
-                except:
+                except Exception:
                     pass
                     
             # Parse training metrics: {'loss': 0.446, 'grad_norm': 9.452, 'learning_rate': 1.997e-05, 'epoch': 0.0}

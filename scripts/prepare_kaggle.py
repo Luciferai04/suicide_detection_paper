@@ -71,9 +71,9 @@ def main():
         else:
             raise ValueError(f"Could not find text column in Kaggle CSV. Columns: {list(df.columns)[:10]} ...")
     label_col = None
-    for l in label_candidates:
-        if l in cols_lower:
-            label_col = cols_lower[l]
+    for lbl in label_candidates:
+        if lbl in cols_lower:
+            label_col = cols_lower[lbl]
             break
     if label_col is None:
         raise ValueError("Could not find label/class column in Kaggle CSV")

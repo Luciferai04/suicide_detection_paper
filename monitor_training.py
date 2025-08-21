@@ -85,7 +85,7 @@ def extract_bert_progress(log_content):
                 parts = progress_line.split('%|')[0]
                 percentage = parts.split()[-1] if parts else "0"
                 return f"{percentage}% progress"
-        except:
+        except Exception:
             pass
     
     return "Training in progress"

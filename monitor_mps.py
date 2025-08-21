@@ -16,7 +16,7 @@ def get_latest_log_lines(log_path, n=5):
         result = subprocess.run(['tail', '-n', str(n), log_path], 
                               capture_output=True, text=True)
         return result.stdout
-    except:
+    except Exception:
         return None
 
 def check_process_status(pid):

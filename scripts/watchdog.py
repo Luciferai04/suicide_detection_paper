@@ -167,7 +167,7 @@ class TrainingWatchdog:
                                 print(f"⚠️  Killing hung MPS process {pid}")
                                 os.kill(int(pid), signal.SIGKILL)
                                 time.sleep(2)
-                        except:
+                        except Exception:
                             pass
         except Exception as e:
             print(f"Error checking MPS processes: {e}")
