@@ -17,7 +17,6 @@ def threshold_for_target_sensitivity(
     best_thr = 0.5
     if fn == 0:
         return 0.5
-    prev_p = 1.0
     for i in range(len(y_sorted)):
         if y_sorted[i] == 1:
             tp += 1
@@ -28,7 +27,6 @@ def threshold_for_target_sensitivity(
         if sens >= target_sensitivity:
             best_thr = max(min(thr, 1.0), 0.0)
             break
-        prev_p = p_sorted[i]
     return float(best_thr)
 
 

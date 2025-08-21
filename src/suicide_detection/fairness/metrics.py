@@ -95,7 +95,7 @@ def demographic_parity(group_metrics: Dict[str, Dict[str, float]]) -> Dict[str, 
         Dictionary with demographic parity metrics
     """
     positive_rates = []
-    for group, metrics in group_metrics.items():
+    for _group, metrics in group_metrics.items():
         if "positive_rate" in metrics:
             positive_rates.append(metrics["positive_rate"])
 
@@ -123,7 +123,7 @@ def equal_opportunity(group_metrics: Dict[str, Dict[str, float]]) -> Dict[str, f
         Dictionary with equal opportunity metrics
     """
     tpr_values = []
-    for group, metrics in group_metrics.items():
+    for _group, metrics in group_metrics.items():
         if "tpr" in metrics:
             tpr_values.append(metrics["tpr"])
 
@@ -153,7 +153,7 @@ def equalized_odds(group_metrics: Dict[str, Dict[str, float]]) -> Dict[str, floa
     tpr_values = []
     fpr_values = []
 
-    for group, metrics in group_metrics.items():
+    for _group, metrics in group_metrics.items():
         if "tpr" in metrics and "fpr" in metrics:
             tpr_values.append(metrics["tpr"])
             fpr_values.append(metrics["fpr"])
@@ -187,7 +187,7 @@ def predictive_parity(group_metrics: Dict[str, Dict[str, float]]) -> Dict[str, f
         Dictionary with predictive parity metrics
     """
     precision_values = []
-    for group, metrics in group_metrics.items():
+    for _group, metrics in group_metrics.items():
         if "precision" in metrics and metrics["precision"] > 0:
             precision_values.append(metrics["precision"])
 
@@ -257,7 +257,7 @@ def comprehensive_fairness_analysis(
 
     # Flag fairness issues
     issues = []
-    for metric_type, metrics in results["fairness_metrics"].items():
+    for _metric_type, metrics in results["fairness_metrics"].items():
         for metric_name, value in metrics.items():
             if "_difference" in metric_name:
                 threshold = thresholds.get(metric_name, 0.1)
@@ -295,7 +295,7 @@ def calculate_overall_fairness_score(fairness_metrics: Dict[str, Dict[str, float
     """
     differences = []
 
-    for metric_type, metrics in fairness_metrics.items():
+    for _metric_type, metrics in fairness_metrics.items():
         for metric_name, value in metrics.items():
             if "_difference" in metric_name:
                 # Convert difference to a score (0 = worst, 1 = best)
