@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import torch
 import yaml
-from sklearn.model_selection import StratifiedKFold, train_test_split
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from transformers import EarlyStoppingCallback, Trainer, TrainingArguments
 
@@ -22,7 +22,6 @@ from suicide_detection.models.bilstm_attention import BiLSTMAttention, BiLSTMAtt
 from suicide_detection.models.svm_baseline import SVMBaseline
 from suicide_detection.utils.logging import get_logger
 from suicide_detection.utils.seed import set_global_seed
-
 
 # -------------------------
 # Shared helpers
@@ -125,8 +124,8 @@ def _run_svm_cv(model, X_train, y_train, n_splits: int, logger, output_dir: Path
 def _save_linear_svm_feature_importance(best, X_train, y_train, output_dir: Path, logger):
     """Train a linear SVM on vectorized features to export indicative n-grams."""
     try:
-        from sklearn.svm import LinearSVC
         import numpy as _np
+        from sklearn.svm import LinearSVC
 
         features = best.named_steps["features"]
         X_train_vec = features.transform(X_train)
@@ -397,8 +396,8 @@ def run_bilstm(
         with torch.no_grad():
             for ids, attn, labels in loader:
                 ids, attn = ids.to(device), attn.to(device)
-                logits = model(ids, attn)
-                prob = torch.softmax(logits, dim=-1)[:, 1]
+                outputs = model(ids, attn)
+                prob = torch.softmax(outputs, dim=-1)[:, 1]
                 ys.append(labels)
                 ps.append(prob.cpu())
         y_true = torch.cat(ys).numpy()
@@ -493,7 +492,7 @@ def run_bilstm(
             with torch.no_grad():
                 for ids, attn, _labels in val_loader:
                     ids, attn = ids.to(device), attn.to(device)
-                    logits = model(ids, attn)
+                    _ = model(ids, attn)
                     attn_w = getattr(model, "last_attn", None)
                     if attn_w is None:
                         break
