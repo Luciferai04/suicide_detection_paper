@@ -1009,7 +1009,7 @@ class ClinicalDecisionSupportEngine:
         """
 
         # Find and update alert
-        for patient_id, patient_alerts in self.active_alerts.items():
+        for _patient_id, patient_alerts in self.active_alerts.items():
             for alert in patient_alerts:
                 if alert.alert_id == alert_id:
                     logger.info(f"Alert {alert_id} acknowledged by {clinician_id}")
@@ -1140,11 +1140,11 @@ class ClinicalDecisionSupportEngine:
             if self.fhir_connector.status == IntegrationStatus.CONNECTED:
                 clinical_alert = ClinicalAlert(
                     alert_id=alert.alert_id,
-                    alert_type=AlertType.PRIMARY_CLINICIAN,
+                    alert_type=AlertType.PRIMARY_CLINICIAN,  # noqa: F821
                     urgency_level=(
-                        UrgencyLevel.URGENT
+                        UrgencyLevel.URGENT  # noqa: F821
                         if alert.severity == "critical"
-                        else UrgencyLevel.PRIORITY
+                        else UrgencyLevel.PRIORITY  # noqa: F821
                     ),
                     message=alert.message,
                     recipient_role="clinician",

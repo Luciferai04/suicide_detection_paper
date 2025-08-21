@@ -62,7 +62,7 @@ class Anonymizer:
             for ent in getattr(doc, "ents", []):
                 if ent.label_ in {"PERSON", "GPE", "ORG", "LOC"}:
                     s = s.replace(ent.text, "<PII>")
-            for match_id, start, end in matcher(doc):
+            for _match_id, start, end in matcher(doc):
                 span = doc[start:end]
                 s = s.replace(span.text, "<DATE>")
             return s

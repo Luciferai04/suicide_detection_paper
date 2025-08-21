@@ -5,12 +5,13 @@ Creates synthetic but realistic results for visualization.
 """
 
 import json
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from pathlib import Path
 import warnings
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+
 warnings.filterwarnings('ignore')
 
 # Set style for publication-quality figures
@@ -102,8 +103,8 @@ def create_architecture_diagram():
     ax.axis('off')
     
     plt.tight_layout()
-    plt.savefig(output_dir / 'architecture_comparison.pdf', dpi=300, bbox_inches='tight')
-    plt.savefig(output_dir / 'architecture_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig(output_dir / 'architecture_comparison.pdf', dpi=300, bbox_inches="tight")
+    plt.savefig(output_dir / 'architecture_comparison.png', dpi=300, bbox_inches="tight")
     plt.close()
 
 # Figure 2: Performance Comparison Bar Chart
@@ -151,8 +152,8 @@ def create_performance_comparison():
     autolabel(rects3)
     
     plt.tight_layout()
-    plt.savefig(output_dir / 'performance_comparison.pdf', dpi=300, bbox_inches='tight')
-    plt.savefig(output_dir / 'performance_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig(output_dir / 'performance_comparison.pdf', dpi=300, bbox_inches="tight")
+    plt.savefig(output_dir / 'performance_comparison.png', dpi=300, bbox_inches="tight")
     plt.close()
 
 # Figure 3: Cross-Dataset Heatmap
@@ -190,14 +191,13 @@ def create_cross_dataset_heatmap():
         ax.set_ylabel('Train Dataset', fontsize=10)
     
     plt.tight_layout()
-    plt.savefig(output_dir / 'cross_dataset_heatmap.pdf', dpi=300, bbox_inches='tight')
-    plt.savefig(output_dir / 'cross_dataset_heatmap.png', dpi=300, bbox_inches='tight')
+    plt.savefig(output_dir / 'cross_dataset_heatmap.pdf', dpi=300, bbox_inches="tight")
+    plt.savefig(output_dir / 'cross_dataset_heatmap.png', dpi=300, bbox_inches="tight")
     plt.close()
 
 # Figure 4: ROC Curves
 def create_roc_curves():
     """Create ROC curves for all models."""
-    from sklearn.metrics import roc_curve, auc
     
     fig, ax = plt.subplots(figsize=(8, 8))
     
@@ -245,8 +245,8 @@ def create_roc_curves():
     ax.grid(True, alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig(output_dir / 'roc_curves.pdf', dpi=300, bbox_inches='tight')
-    plt.savefig(output_dir / 'roc_curves.png', dpi=300, bbox_inches='tight')
+    plt.savefig(output_dir / 'roc_curves.pdf', dpi=300, bbox_inches="tight")
+    plt.savefig(output_dir / 'roc_curves.png', dpi=300, bbox_inches="tight")
     plt.close()
 
 # Figure 5: Fairness Analysis
@@ -303,14 +303,13 @@ def create_fairness_analysis():
     ax.set_ylim([0.8, 1.0])
     
     plt.tight_layout()
-    plt.savefig(output_dir / 'fairness_analysis.pdf', dpi=300, bbox_inches='tight')
-    plt.savefig(output_dir / 'fairness_analysis.png', dpi=300, bbox_inches='tight')
+    plt.savefig(output_dir / 'fairness_analysis.pdf', dpi=300, bbox_inches="tight")
+    plt.savefig(output_dir / 'fairness_analysis.png', dpi=300, bbox_inches="tight")
     plt.close()
 
 # Figure 6: Confusion Matrices
 def create_confusion_matrices():
     """Create confusion matrices for all models."""
-    from sklearn.metrics import confusion_matrix
     
     fig, axes = plt.subplots(1, 3, figsize=(15, 4))
     
@@ -331,8 +330,8 @@ def create_confusion_matrices():
         ax.set_ylabel('Actual', fontsize=10)
     
     plt.tight_layout()
-    plt.savefig(output_dir / 'confusion_matrices.pdf', dpi=300, bbox_inches='tight')
-    plt.savefig(output_dir / 'confusion_matrices.png', dpi=300, bbox_inches='tight')
+    plt.savefig(output_dir / 'confusion_matrices.pdf', dpi=300, bbox_inches="tight")
+    plt.savefig(output_dir / 'confusion_matrices.png', dpi=300, bbox_inches="tight")
     plt.close()
 
 # Additional system diagrams
@@ -387,8 +386,8 @@ def create_system_overview():
     _arrow(ax, 8.0, 2.05, 8.4, 2.45)
 
     plt.tight_layout()
-    plt.savefig(output_dir / 'system_overview.pdf', dpi=300, bbox_inches='tight')
-    plt.savefig(output_dir / 'system_overview.png', dpi=300, bbox_inches='tight')
+    plt.savefig(output_dir / 'system_overview.pdf', dpi=300, bbox_inches="tight")
+    plt.savefig(output_dir / 'system_overview.png', dpi=300, bbox_inches="tight")
     plt.close()
 
 
@@ -415,8 +414,8 @@ def create_data_pipeline():
         x += 2.0
 
     plt.tight_layout()
-    plt.savefig(output_dir / 'data_pipeline.pdf', dpi=300, bbox_inches='tight')
-    plt.savefig(output_dir / 'data_pipeline.png', dpi=300, bbox_inches='tight')
+    plt.savefig(output_dir / 'data_pipeline.pdf', dpi=300, bbox_inches="tight")
+    plt.savefig(output_dir / 'data_pipeline.png', dpi=300, bbox_inches="tight")
     plt.close()
 
 
@@ -446,8 +445,8 @@ def create_training_orchestration():
     _arrow(ax, 9.8, 2.65, 9.2, 2.65)
 
     plt.tight_layout()
-    plt.savefig(output_dir / 'training_orchestration.pdf', dpi=300, bbox_inches='tight')
-    plt.savefig(output_dir / 'training_orchestration.png', dpi=300, bbox_inches='tight')
+    plt.savefig(output_dir / 'training_orchestration.pdf', dpi=300, bbox_inches="tight")
+    plt.savefig(output_dir / 'training_orchestration.png', dpi=300, bbox_inches="tight")
     plt.close()
 
 
@@ -475,8 +474,8 @@ def create_evaluation_framework():
     _arrow(ax, 8.4, 3.6, 8.3, 2.5)
 
     plt.tight_layout()
-    plt.savefig(output_dir / 'evaluation_framework.pdf', dpi=300, bbox_inches='tight')
-    plt.savefig(output_dir / 'evaluation_framework.png', dpi=300, bbox_inches='tight')
+    plt.savefig(output_dir / 'evaluation_framework.pdf', dpi=300, bbox_inches="tight")
+    plt.savefig(output_dir / 'evaluation_framework.png', dpi=300, bbox_inches="tight")
     plt.close()
 
 
@@ -502,8 +501,8 @@ def create_deployment_architecture():
     _arrow(ax, 7.4, 3.2, 7.4, 2.4)
 
     plt.tight_layout()
-    plt.savefig(output_dir / 'deployment_architecture.pdf', dpi=300, bbox_inches='tight')
-    plt.savefig(output_dir / 'deployment_architecture.png', dpi=300, bbox_inches='tight')
+    plt.savefig(output_dir / 'deployment_architecture.pdf', dpi=300, bbox_inches="tight")
+    plt.savefig(output_dir / 'deployment_architecture.png', dpi=300, bbox_inches="tight")
     plt.close()
 
 

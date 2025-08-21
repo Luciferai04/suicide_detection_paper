@@ -5,13 +5,14 @@ Creates bar charts, line plots, and performance comparisons.
 """
 
 import json
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
-import numpy as np
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 from typing import Dict, List
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
 
 # Set style
 sns.set_style("whitegrid")
@@ -107,7 +108,7 @@ class ChartGenerator:
         
         plt.tight_layout()
         save_path = self.plots_dir / f"accuracy_comparison_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
-        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        plt.savefig(save_path, dpi=300, bbox_inches="tight")
         plt.close()
         
         print(f"✅ Accuracy comparison chart saved to {save_path}")
@@ -167,7 +168,7 @@ class ChartGenerator:
         
         plt.tight_layout()
         save_path = self.plots_dir / f"speedup_comparison_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
-        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        plt.savefig(save_path, dpi=300, bbox_inches="tight")
         plt.close()
         
         print(f"✅ Speedup comparison chart saved to {save_path}")
@@ -201,7 +202,7 @@ class ChartGenerator:
         
         plt.tight_layout()
         save_path = self.plots_dir / f"metrics_heatmap_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
-        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        plt.savefig(save_path, dpi=300, bbox_inches="tight")
         plt.close()
         
         print(f"✅ Metrics heatmap saved to {save_path}")
@@ -259,7 +260,7 @@ class ChartGenerator:
         plt.tight_layout()
         
         save_path = self.plots_dir / f"radar_comparison_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
-        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        plt.savefig(save_path, dpi=300, bbox_inches="tight")
         plt.close()
         
         print(f"✅ Radar comparison chart saved to {save_path}")
@@ -322,7 +323,7 @@ class ChartGenerator:
         
         plt.tight_layout()
         save_path = self.plots_dir / f"training_time_comparison_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
-        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        plt.savefig(save_path, dpi=300, bbox_inches="tight")
         plt.close()
         
         print(f"✅ Training time comparison chart saved to {save_path}")

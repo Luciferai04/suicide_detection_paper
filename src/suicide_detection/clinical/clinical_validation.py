@@ -239,7 +239,7 @@ class ClinicalValidator:
                 calib_intercept = np.polyfit(mean_pred, fraction_pos, 1)[1]
             else:
                 calib_slope, calib_intercept = 1.0, 0.0
-        except:
+        except Exception:
             calib_slope, calib_intercept = 1.0, 0.0
 
         # Hosmer-Lemeshow test (simplified)
@@ -306,7 +306,7 @@ class ClinicalValidator:
 
             return 1 - chi2.cdf(chi2_stat, df=8)
 
-        except:
+        except Exception:
             return 1.0  # Return non-significant if test fails
 
     def _compute_subgroup_metrics(
@@ -348,7 +348,7 @@ class ClinicalValidator:
                             ),
                             "ppv": float(basic_metrics.precision),
                         }
-                    except:
+                    except Exception:
                         continue
 
         return subgroup_results

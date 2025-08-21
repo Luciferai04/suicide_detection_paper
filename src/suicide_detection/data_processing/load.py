@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import csv
 import pandas as pd
 
 from .anonymize import Anonymizer
@@ -23,10 +24,26 @@ def load_dataset_secure(path: Path, anonymize: bool = True) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(f"Dataset not found at {path}")
 
+    # Robust CSV/TSV loading with fallbacks
     if path.suffix.lower() == ".csv":
-        df = pd.read_csv(path)
+        try:
+            df = pd.read_csv(path)
+        except Exception:
+            try:
+                df = pd.read_csv(path, encoding="utf-8", engine="python", on_bad_lines="skip")
+            except Exception:
+                df = pd.read_csv(
+                    path,
+                    encoding="latin-1",
+                    engine="python",
+                    on_bad_lines="skip",
+                    quoting=csv.QUOTE_MINIMAL,
+                )
     elif path.suffix.lower() in {".tsv", ".txt"}:
-        df = pd.read_csv(path, sep="\t")
+        try:
+            df = pd.read_csv(path, sep="\t")
+        except Exception:
+            df = pd.read_csv(path, sep="\t", encoding="utf-8", engine="python", on_bad_lines="skip")
     else:
         raise ValueError("Unsupported file type. Use .csv or .tsv")
 

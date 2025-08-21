@@ -374,6 +374,20 @@ def run_bilstm(
         y_prob = torch.cat(ps).numpy()
         return compute_metrics(y_true, y_prob)
 
+    # Helper to collect probs and labels (used by fairness and plots)
+    def collect(loader):
+        ys, ps = [], []
+        with torch.no_grad():
+            for ids, attn, labels in loader:
+                ids, attn = ids.to(device), attn.to(device)
+                logits = model(ids, attn)
+                prob = torch.softmax(logits, dim=-1)[:, 1]
+                ys.append(labels)
+                ps.append(prob.cpu())
+        y_true = torch.cat(ys).numpy()
+        y_prob = torch.cat(ps).numpy()
+        return y_true, y_prob
+
     best_f1, patience, max_patience = 0.0, 0, early_patience
     for epoch in range(1, num_epochs + 1):
         model.train()
@@ -424,19 +438,6 @@ def run_bilstm(
     except Exception:
         pass
 
-    # Helper to collect probs and labels (used by fairness and plots)
-    def collect(loader):
-        ys, ps = [], []
-        with torch.no_grad():
-            for ids, attn, labels in loader:
-                ids, attn = ids.to(device), attn.to(device)
-                logits = model(ids, attn)
-                prob = torch.softmax(logits, dim=-1)[:, 1]
-                ys.append(labels)
-                ps.append(prob.cpu())
-        y_true = torch.cat(ys).numpy()
-        y_prob = torch.cat(ps).numpy()
-        return y_true, y_prob
 
     # Optional fairness outputs using provided groups
     if groups:
@@ -471,7 +472,7 @@ def run_bilstm(
         count = 0
         model.eval()
         with torch.no_grad():
-            for ids, attn, labels in val_loader:
+            for ids, attn, _labels in val_loader:
                 ids, attn = ids.to(device), attn.to(device)
                 logits = model(ids, attn)
                 attn_w = getattr(model, "last_attn", None)
@@ -597,7 +598,6 @@ def run_bert(
         }
 
     # Optional focal loss: fall back to standard CrossEntropy if Trainer doesn't accept custom loss
-    loss_kwargs = {}
     if use_focal:
         from suicide_detection.utils.losses import FocalLoss
 

@@ -5,13 +5,14 @@ Compiles SOTA results from published papers and compares with our models.
 """
 
 import json
-import pandas as pd
-import numpy as np
-from pathlib import Path
 from datetime import datetime
-from typing import Dict, List, Optional
+from pathlib import Path
+from typing import Dict, Optional
+
 import matplotlib.pyplot as plt
-import seaborn as sns
+import numpy as np
+import pandas as pd
+
 
 class LiteratureBaselines:
     """Manages literature baseline comparisons for suicide detection."""
@@ -334,7 +335,7 @@ class LiteratureBaselines:
         plt.tight_layout()
         
         if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
+            plt.savefig(save_path, dpi=300, bbox_inches="tight")
             print(f"Saved comparison plot to {save_path}")
         
         plt.show()

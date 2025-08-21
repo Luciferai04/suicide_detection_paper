@@ -5,19 +5,17 @@ Analyzes misclassifications, categorizes errors, and identifies failure modes.
 """
 
 import json
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from pathlib import Path
-from datetime import datetime
-from typing import Dict, List, Optional, Tuple, Any
-from collections import Counter, defaultdict
-import re
-from sklearn.metrics import confusion_matrix, classification_report
-from sklearn.feature_extraction.text import TfidfVectorizer
-from wordcloud import WordCloud
 import warnings
+from collections import Counter
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
+
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+from sklearn.metrics import confusion_matrix
+
 warnings.filterwarnings('ignore')
 
 class ErrorAnalyzer:
@@ -471,7 +469,7 @@ class ErrorAnalyzer:
         
         # Save figure
         fig_path = self.analysis_dir / "error_analysis_visualization.png"
-        plt.savefig(fig_path, dpi=300, bbox_inches='tight')
+        plt.savefig(fig_path, dpi=300, bbox_inches="tight")
         print(f"Saved error analysis visualization to {fig_path}")
         
         return fig
@@ -658,21 +656,21 @@ Calibration:
         """Save all analysis results."""
         
         # Save error analysis
-        with open(self.analysis_dir / "error_analysis.json", 'w') as f:
+        with open(self.analysis_dir / "error_analysis.json", "w") as f:
             json.dump(error_analysis, f, indent=2, default=str)
         
         # Save confidence analysis
         if confidence_analysis:
-            with open(self.analysis_dir / "confidence_analysis.json", 'w') as f:
+            with open(self.analysis_dir / "confidence_analysis.json", "w") as f:
                 json.dump(confidence_analysis, f, indent=2)
         
         # Save text analysis
         if text_analysis:
-            with open(self.analysis_dir / "text_pattern_analysis.json", 'w') as f:
+            with open(self.analysis_dir / "text_pattern_analysis.json", "w") as f:
                 json.dump(text_analysis, f, indent=2)
         
         # Save report
-        with open(self.analysis_dir / "error_analysis_report.txt", 'w') as f:
+        with open(self.analysis_dir / "error_analysis_report.txt", "w") as f:
             f.write(report)
         
         print(f"Saved all error analysis results to {self.analysis_dir}")

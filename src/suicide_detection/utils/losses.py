@@ -30,7 +30,6 @@ class FocalLoss(nn.Module):
         if logits.dim() == 1:
             # expand to 2-class
             logits = torch.stack([-logits, logits], dim=-1)
-        num_classes = logits.size(-1)
         ce = F.cross_entropy(logits, targets, reduction="none", weight=self.alpha)
         pt = torch.softmax(logits, dim=-1).gather(1, targets.view(-1, 1)).squeeze(1).clamp_min(1e-8)
         loss = ((1 - pt) ** self.gamma) * ce
