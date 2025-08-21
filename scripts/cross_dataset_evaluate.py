@@ -12,15 +12,14 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Add src to path
 sys.path.append(str(Path(__file__).resolve().parents[1] / 'src'))
 
-from suicide_detection.evaluation.metrics import compute_metrics
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -35,7 +34,8 @@ DATASETS = {
 MODELS = ["svm", "bilstm", "bert"]
 
 
-def run(cmd: list[str]) -> subprocess.CompletedProcess:
+
+def run(cmd: List[str]) -> subprocess.CompletedProcess:
     """Run a command and return the result."""
     logger.info(f"Running: {' '.join(cmd)}")
     return subprocess.run(cmd, capture_output=True, text=True)

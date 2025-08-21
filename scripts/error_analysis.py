@@ -5,19 +5,17 @@ Analyzes misclassifications, categorizes errors, and identifies failure modes.
 """
 
 import json
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from pathlib import Path
-from datetime import datetime
-from typing import Dict, List, Optional, Tuple, Any
-from collections import Counter, defaultdict
-import re
-from sklearn.metrics import confusion_matrix, classification_report
-from sklearn.feature_extraction.text import TfidfVectorizer
-from wordcloud import WordCloud
 import warnings
+from collections import Counter
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
+
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+from sklearn.metrics import confusion_matrix
+
 warnings.filterwarnings('ignore')
 
 class ErrorAnalyzer:
@@ -471,7 +469,7 @@ class ErrorAnalyzer:
         
         # Save figure
         fig_path = self.analysis_dir / "error_analysis_visualization.png"
-        plt.savefig(fig_path, dpi=300, bbox_inches='tight')
+        plt.savefig(fig_path, dpi=300, bbox_inches="tight")
         print(f"Saved error analysis visualization to {fig_path}")
         
         return fig
