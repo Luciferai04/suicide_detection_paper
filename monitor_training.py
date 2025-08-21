@@ -158,7 +158,7 @@ def main():
             try:
                 with open(config['pid_file'], 'r') as f:
                     pid = int(f.read().strip())
-            except:
+            except Exception:
                 print(f"❌ {model_name.upper()}: Could not read PID")
                 continue
             

@@ -310,7 +310,7 @@ class ResultsCollector:
                     try:
                         with open(tag_file, 'r') as f:
                             run_info["tags"][tag_file.name] = f.read().strip()
-                    except:
+                    except Exception:
                         pass
             
             # Read metrics
@@ -326,7 +326,7 @@ class ResultsCollector:
                                     parts = last_line.split()
                                     if len(parts) >= 2:
                                         run_info["metrics"][metric_file.name] = float(parts[1])
-                    except:
+                    except Exception:
                         pass
             
             return run_info

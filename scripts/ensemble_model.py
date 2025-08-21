@@ -29,7 +29,7 @@ def main():
     base = Path(args.outputs_dir)
     probs = []
     y_true = None
-    for i, m in enumerate(args.models):
+    for m in args.models:
         model_dir = base / f"{m}_{args.dataset}"
         p, y = load_probs(model_dir, m, args.split)
         probs.append(p)

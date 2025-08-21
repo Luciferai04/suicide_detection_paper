@@ -65,7 +65,7 @@ def main():
     while True:
         try:
             status = check_training_status()
-            running_models = sum(1 for m in status['models'].values() if m.get('status') == 'running')
+            _running_models = sum(1 for m in status['models'].values() if m.get('status') == 'running')
             completed_models = sum(1 for m in status['models'].values() if m.get('status') == 'completed')
             
             if completed_models == 3:

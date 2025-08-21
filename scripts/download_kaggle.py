@@ -11,7 +11,6 @@ DATASET="nikhileswarkomati/suicide-watch"
 def main():
     target_dir = Path("data/kaggle")
     target_dir.mkdir(parents=True, exist_ok=True)
-    zip_path = target_dir / "suicide-watch.zip"
 
     # Verify Kaggle credentials
     kaggle_dir = Path(os.environ.get("KAGGLE_CONFIG_DIR", Path.home()/".kaggle"))

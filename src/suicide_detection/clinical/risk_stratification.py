@@ -238,54 +238,60 @@ class RiskStratifier:
         base_risk = ml_prediction
         risk_adjustment = 0.0
 
-        # Clinical feature adjustments
-        for factor, weight in self.risk_factor_weights.items():
-            if factor in clinical_features:
-                feature_value = clinical_features[factor]
+        # Add adjustments from clinical features
+        risk_adjustment += self._adjust_for_features(clinical_features)
 
-                # Handle different feature types
-                if isinstance(feature_value, bool):
-                    adjustment = weight if feature_value else 0.0
-                elif isinstance(feature_value, (int, float)):
-                    # Scale numeric values (assuming 0-10 scale)
-                    normalized_value = min(feature_value / 10.0, 1.0)
-                    adjustment = weight * normalized_value
-                else:
-                    adjustment = 0.0
-
-                risk_adjustment += adjustment
-
-        # DSM-5 criteria adjustments
+        # Add adjustments from DSM-5 criteria
         if dsm5_criteria is not None:
-            # Major suicide-specific criteria
-            if dsm5_criteria.active_ideation:
-                risk_adjustment += 0.20
-            if dsm5_criteria.specific_plan:
-                risk_adjustment += 0.25
-            if dsm5_criteria.access_to_means:
-                risk_adjustment += 0.15
-            if dsm5_criteria.intent_to_act:
-                risk_adjustment += 0.30
-
-            # Previous attempts (escalating weight)
-            if dsm5_criteria.previous_attempts > 0:
-                attempt_weight = min(dsm5_criteria.previous_attempts * 0.08, 0.25)
-                risk_adjustment += attempt_weight
-
-            # Protective factors
-            protective_count = sum(
-                [
-                    dsm5_criteria.social_support,
-                    dsm5_criteria.treatment_engagement,
-                    dsm5_criteria.religious_beliefs,
-                    dsm5_criteria.responsibility_to_others,
-                ]
-            )
-            risk_adjustment -= protective_count * 0.05
+            risk_adjustment += self._adjust_for_dsm5(dsm5_criteria)
 
         # Combine and bound
         adjusted_risk = base_risk + risk_adjustment
         return max(0.0, min(1.0, adjusted_risk))
+
+    def _adjust_for_features(self, clinical_features: Dict[str, Any]) -> float:
+        """Compute risk adjustment from clinical feature dictionary."""
+        adj = 0.0
+        for factor, weight in self.risk_factor_weights.items():
+            if factor not in clinical_features:
+                continue
+            feature_value = clinical_features[factor]
+            if isinstance(feature_value, bool):
+                adjustment = weight if feature_value else 0.0
+            elif isinstance(feature_value, (int, float)):
+                normalized_value = min(feature_value / 10.0, 1.0)
+                adjustment = weight * normalized_value
+            else:
+                adjustment = 0.0
+            adj += adjustment
+        return adj
+
+    def _adjust_for_dsm5(self, dsm5_criteria: DSM5Criteria) -> float:
+        """Compute risk adjustment from DSM-5 criteria block."""
+        adj = 0.0
+        # Major suicide-specific criteria
+        if dsm5_criteria.active_ideation:
+            adj += 0.20
+        if dsm5_criteria.specific_plan:
+            adj += 0.25
+        if dsm5_criteria.access_to_means:
+            adj += 0.15
+        if dsm5_criteria.intent_to_act:
+            adj += 0.30
+        # Previous attempts (escalating weight)
+        if dsm5_criteria.previous_attempts > 0:
+            adj += min(dsm5_criteria.previous_attempts * 0.08, 0.25)
+        # Protective factors diminish risk
+        protective_count = sum(
+            [
+                dsm5_criteria.social_support,
+                dsm5_criteria.treatment_engagement,
+                dsm5_criteria.religious_beliefs,
+                dsm5_criteria.responsibility_to_others,
+            ]
+        )
+        adj -= protective_count * 0.05
+        return adj
 
     def _classify_risk_level(self, risk_probability: float) -> RiskLevel:
         """Classify risk level based on probability."""

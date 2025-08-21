@@ -249,7 +249,7 @@ class ResultsCollector:
                     logger.info(f"Results saved to {self.results_file}")
                     
                     # Generate report
-                    report_file = self.generate_report(all_results)
+                    self.generate_report(all_results)
                     
                     # Trigger visualization
                     self.trigger_visualization()
