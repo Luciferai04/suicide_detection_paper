@@ -19,6 +19,7 @@ import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict
+import os
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = ROOT / "data/raw"
@@ -50,10 +51,21 @@ def main() -> None:
     ap.add_argument("--dataset", required=True, choices=sorted(WHITELIST.keys()))
     ap.add_argument("--filename", required=False, help="Override output filename")
     ap.add_argument("--confirm", action="store_true", help="Confirm you agree to the dataset terms")
+    ap.add_argument(
+        "--confirm_file",
+        required=False,
+        help="Path to a file that exists only if you have reviewed/accepted the dataset terms",
+    )
     args = ap.parse_args()
 
-    if not args.confirm:
-        print("Refusing to download without --confirm. Please review dataset terms and re-run with --confirm.")
+    env_confirm = os.getenv("DATASET_TERMS_ACCEPTED", "").lower() in {"1", "true", "yes"}
+    file_confirm = bool(args.confirm_file and Path(args.confirm_file).exists())
+
+    if not (args.confirm or env_confirm or file_confirm):
+        print("Refusing to download without confirmation. Review dataset terms and either:")
+        print("  • pass --confirm, or")
+        print("  • set DATASET_TERMS_ACCEPTED=1, or")
+        print("  • provide --confirm_file pointing to your acceptance proof file.")
         print(f"URL: {WHITELIST[args.dataset]}")
         sys.exit(1)
 

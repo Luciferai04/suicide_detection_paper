@@ -66,10 +66,17 @@ def extract_examples(p: Path):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Convert MentaLLaMA repo data into classification splits")
+    ap = argparse.ArgumentParser(
+        description="Convert MentaLLaMA repo data into classification splits"
+    )
     ap.add_argument("--repo", default="data/mentallama")
     ap.add_argument("--out", default="data/mentallama/splits")
-    ap.add_argument("--group_cols", nargs="*", default=[], help="Optional quasi-identifiers to check k-anonymity if present")
+    ap.add_argument(
+        "--group_cols",
+        nargs="*",
+        default=[],
+        help="Optional quasi-identifiers to check k-anonymity if present",
+    )
     ap.add_argument("--k_anonymity_k", type=int, default=5)
     args = ap.parse_args()
 
@@ -95,7 +102,9 @@ def main():
             rows.extend(extract_examples(jf))
     if not rows:
         audit.log_event("mentallama_prepare_empty", {})
-        print("No convertible examples found. Ensure the repo contains JSON data or point --repo to the JSON subfolder.")
+        print(
+            "No convertible examples found. Ensure the repo contains JSON data or point --repo to the JSON subfolder."
+        )
         return
 
     df = pd.DataFrame(rows).dropna()
@@ -103,13 +112,15 @@ def main():
     anon = Anonymizer()
     df["text"] = df["text"].astype(str).map(anon.transform).map(reddit_clean)
     # Deduplicate
-    df = df.drop_duplicates(subset=["text"]) 
+    df = df.drop_duplicates(subset=["text"])
 
     # Optional k-anonymity report if group columns exist
     from pathlib import Path as _P
+
     try:
         if args.group_cols:
             from suicide_detection.ethics.privacy import k_anonymity_report, write_privacy_report
+
             rep = k_anonymity_report(df, args.group_cols, k=args.k_anonymity_k)
             write_privacy_report(rep, _P("results/privacy") / "mentallama_k_anon.json")
     except Exception:
@@ -117,6 +128,7 @@ def main():
 
     # Simple stratified split (70/15/15)
     import numpy as np
+
     rng = np.random.default_rng(42)
     X = df["text"].values
     y = df["label"].values.astype(int)
@@ -129,8 +141,8 @@ def main():
         n_test = max(1, int(0.15 * n))
         n_val = max(1, int(0.15 * (n - n_test)))
         test_i = li[:n_test]
-        val_i = li[n_test:n_test + n_val]
-        train_i = li[n_test + n_val:]
+        val_i = li[n_test : n_test + n_val]
+        train_i = li[n_test + n_val :]
         test_idx.append(test_i)
         val_idx.append(val_i)
         train_idx.append(train_i)
@@ -139,7 +151,10 @@ def main():
     test_idx = np.concatenate(test_idx)
 
     def dump(idxs, name):
-        pd.DataFrame({"text": X[idxs], "label": y[idxs]}).to_csv(out_dir / f"{name}.csv", index=False)
+        pd.DataFrame({"text": X[idxs], "label": y[idxs]}).to_csv(
+            out_dir / f"{name}.csv", index=False
+        )
+
     dump(train_idx, "train")
     dump(val_idx, "val")
     dump(test_idx, "test")
@@ -150,4 +165,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

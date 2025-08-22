@@ -10,7 +10,9 @@ from suicide_detection.bias_audit.audit import demographic_group_metrics
 def main():
     ap = argparse.ArgumentParser(description="Compute subgroup metrics for bias auditing")
     ap.add_argument("--labels", required=True, help="CSV with columns: id(optional), label")
-    ap.add_argument("--probs", required=True, help="CSV with columns: id(optional), prob (positive class)")
+    ap.add_argument(
+        "--probs", required=True, help="CSV with columns: id(optional), prob (positive class)"
+    )
     ap.add_argument("--groups", required=True, help="CSV with columns: id(optional), group")
     ap.add_argument("--out", required=True, help="Output markdown report path")
     args = ap.parse_args()
@@ -45,6 +47,7 @@ def main():
                     f.write(f"- {k}: {v}\n")
                 f.write("\n")
     print(f"Wrote {out}")
+
 
 if __name__ == "__main__":
     main()

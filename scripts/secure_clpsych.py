@@ -21,9 +21,14 @@ def check_access(agreement_path: Path) -> bool:
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Secure handler for IRB/registration-controlled CLPsych dataset")
-    ap.add_argument("--agreement", default="ethics/irb_documentation/clpsych_access_granted.txt",
-                    help="Path to a local file proving CLPsych registration / data use agreement")
+    ap = argparse.ArgumentParser(
+        description="Secure handler for IRB/registration-controlled CLPsych dataset"
+    )
+    ap.add_argument(
+        "--agreement",
+        default="ethics/irb_documentation/clpsych_access_granted.txt",
+        help="Path to a local file proving CLPsych registration / data use agreement",
+    )
     ap.add_argument("--out", default="data/clpsych/processed")
     args = ap.parse_args()
 
@@ -32,16 +37,20 @@ def main():
 
     agreement = Path(args.agreement)
     if not check_access(agreement):
-        print("Access denied: CLPsych agreement proof not found. Place a confirmation file and re-run.")
+        print(
+            "Access denied: CLPsych agreement proof not found. Place a confirmation file and re-run."
+        )
         audit.log_event("clpsych_access_denied", {})
         sys.exit(1)
 
-    out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
     # Placeholder for secure processing steps
     audit.log_event("clpsych_access_granted", {"out": str(out)})
-    print("CLPsych secure pipeline stub ready. Integrate dataset-specific parsing in a secure environment.")
+    print(
+        "CLPsych secure pipeline stub ready. Integrate dataset-specific parsing in a secure environment."
+    )
 
 
 if __name__ == "__main__":
     main()
-

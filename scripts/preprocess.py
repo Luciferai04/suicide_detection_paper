@@ -6,7 +6,9 @@ from suicide_detection.data_processing.load import load_dataset_secure
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Anonymize and validate dataset, then write to processed path")
+    ap = argparse.ArgumentParser(
+        description="Anonymize and validate dataset, then write to processed path"
+    )
     ap.add_argument("--input", required=True, help="Path to input CSV/TSV with columns text,label")
     ap.add_argument("--output", required=True, help="Path to write processed CSV")
     args = ap.parse_args()
@@ -20,4 +22,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

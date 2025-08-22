@@ -174,7 +174,9 @@ class ClinicalExplainer:
         self._append_disclaimer(lines)
         return "\n".join(lines)
 
-    def _append_header(self, lines: list[str], patient_id: str | None, explanation: ClinicalExplanation) -> None:
+    def _append_header(
+        self, lines: list[str], patient_id: str | None, explanation: ClinicalExplanation
+    ) -> None:
         lines.append("=" * 60)
         lines.append("SUICIDE RISK ASSESSMENT - CLINICAL EXPLANATION")
         lines.append("=" * 60)
@@ -204,7 +206,9 @@ class ClinicalExplainer:
             lines.append(f"• {concern}")
         lines.append("")
 
-    def _append_high_risk_indicators(self, lines: list[str], explanation: ClinicalExplanation) -> None:
+    def _append_high_risk_indicators(
+        self, lines: list[str], explanation: ClinicalExplanation
+    ) -> None:
         if not explanation.high_risk_indicators:
             return
         lines.append("HIGH-RISK INDICATORS IDENTIFIED")
@@ -217,7 +221,9 @@ class ClinicalExplainer:
                 lines.append(f"  Evidence: {evidence}")
         lines.append("")
 
-    def _append_protective_factors(self, lines: list[str], explanation: ClinicalExplanation) -> None:
+    def _append_protective_factors(
+        self, lines: list[str], explanation: ClinicalExplanation
+    ) -> None:
         if not explanation.protective_factors:
             return
         lines.append("PROTECTIVE FACTORS PRESENT")
@@ -256,9 +262,7 @@ class ClinicalExplainer:
         lines.append("-" * 30)
         lines.append("This AI-generated assessment is intended to support, not replace,")
         lines.append("clinical judgment. Always consider the full clinical context and")
-        lines.append(
-            "conduct comprehensive clinical evaluation before making treatment decisions."
-        )
+        lines.append("conduct comprehensive clinical evaluation before making treatment decisions.")
 
     def _initialize_risk_factors(self) -> Dict[str, Dict[str, Any]]:
         """Initialize clinical risk factor mappings."""
