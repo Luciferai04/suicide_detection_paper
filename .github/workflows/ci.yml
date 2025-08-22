@@ -177,4 +177,3 @@ jobs:
             results/model_outputs/**/*.json
             results/model_outputs/**/*.pkl
             data/processed/dataset.csv
-            requirements.lock.txt
