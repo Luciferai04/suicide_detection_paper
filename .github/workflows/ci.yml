@@ -140,6 +140,8 @@ jobs:
             data/processed
           key: processed-${{ runner.os }}-${{ hashFiles('data/sample/sample.csv') }}
       - name: Smoke preprocess
+        env:
+          DATASET_TERMS_ACCEPTED: "1"
         run: |
           . .venv/bin/activate
           python scripts/preprocess.py --input data/sample/sample.csv --output data/processed/dataset.csv
