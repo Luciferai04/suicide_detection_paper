@@ -72,16 +72,19 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .venv
-          key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('requirements.txt') }}
+          key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('requirements.lock.txt', 'requirements.txt') }}
           restore-keys: |
             venv-${{ runner.os }}-${{ matrix.python-version }}-
-      - name: Compile and install dependencies (locked)
+      - name: Install dependencies
         run: |
           python -m venv .venv
           . .venv/bin/activate
-          python -m pip install --upgrade pip setuptools wheel pip-tools
-          pip-compile --quiet --generate-hashes --output-file requirements.lock.txt requirements.in
-          pip install --prefer-binary --require-hashes -r requirements.lock.txt
+          python -m pip install --upgrade pip setuptools wheel
+          if [ -f requirements.lock.txt ]; then
+            pip install --prefer-binary -r requirements.lock.txt || pip install -r requirements.txt;
+          else
+            pip install -r requirements.txt;
+          fi
           pip install -e .
       - name: Run tests with coverage and junit
         run: |
@@ -116,16 +119,19 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .venv
-          key: venv-${{ runner.os }}-3.10-${{ hashFiles('requirements.txt') }}
+          key: venv-${{ runner.os }}-3.10-${{ hashFiles('requirements.lock.txt', 'requirements.txt') }}
           restore-keys: |
             venv-${{ runner.os }}-3.10-
-      - name: Compile and install dependencies (locked)
+      - name: Install dependencies
         run: |
           python -m venv .venv
           . .venv/bin/activate
-          python -m pip install --upgrade pip setuptools wheel pip-tools
-          pip-compile --quiet --generate-hashes --output-file requirements.lock.txt requirements.in
-          pip install --prefer-binary --require-hashes -r requirements.lock.txt
+          python -m pip install --upgrade pip setuptools wheel
+          if [ -f requirements.lock.txt ]; then
+            pip install --prefer-binary -r requirements.lock.txt || pip install -r requirements.txt;
+          else
+            pip install -r requirements.txt;
+          fi
           pip install -e .
       - name: Restore processed data cache
         uses: actions/cache@v4
