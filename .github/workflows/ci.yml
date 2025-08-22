@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python 3.10
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
           cache: 'pip'
       - name: Install pre-commit
         run: |
@@ -32,7 +32,7 @@ jobs:
     needs: precommit
     strategy:
       matrix:
-        python-version: [ '3.9', '3.10', '3.11' ]
+        python-version: [ '3.11', '3.12' ]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
@@ -60,7 +60,7 @@ jobs:
     needs: [lint]
     strategy:
       matrix:
-        python-version: [ '3.9', '3.10', '3.11' ]
+        python-version: [ '3.11', '3.12' ]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
@@ -110,18 +110,18 @@ jobs:
     needs: test
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python 3.10
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
           cache: 'pip'
       - name: Restore venv cache
         uses: actions/cache@v4
         with:
           path: .venv
-          key: venv-${{ runner.os }}-3.10-${{ hashFiles('requirements.lock.txt', 'requirements.txt') }}
+          key: venv-${{ runner.os }}-3.11-${{ hashFiles('requirements.lock.txt', 'requirements.txt') }}
           restore-keys: |
-            venv-${{ runner.os }}-3.10-
+            venv-${{ runner.os }}-3.11-
       - name: Install dependencies
         run: |
           python -m venv .venv
