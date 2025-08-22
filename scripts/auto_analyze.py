@@ -43,9 +43,15 @@ def save_state(state):
 
 def has_metrics(model_dir: Path) -> bool:
     # Consider complete if a test metrics file exists
-    return any((model_dir / f).exists() for f in [
-        "bert_test_metrics.json", "bilstm_test_metrics.json", "svm_test_metrics.json", "metrics.json"
-    ])
+    return any(
+        (model_dir / f).exists()
+        for f in [
+            "bert_test_metrics.json",
+            "bilstm_test_metrics.json",
+            "svm_test_metrics.json",
+            "metrics.json",
+        ]
+    )
 
 
 def run_cmd(cmd: list[str], timeout: int | None = None):
@@ -102,6 +108,6 @@ def main():
             log(f"Watcher error: {e}")
             time.sleep(30)
 
+
 if __name__ == "__main__":
     main()
-

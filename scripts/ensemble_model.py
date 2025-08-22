@@ -17,13 +17,36 @@ def load_probs(base: Path, model: str, split: str):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Combine model probabilities into an ensemble and evaluate")
-    ap.add_argument("--outputs_dir", default="results/model_outputs", help="Directory containing per-model outputs")
-    ap.add_argument("--dataset", required=True, help="Dataset name suffix used in outputs, e.g., kaggle")
-    ap.add_argument("--models", nargs="*", default=["svm","bilstm","bert"], help="Models to ensemble")
-    ap.add_argument("--weights", nargs="*", type=float, default=None, help="Optional weights for models (same length as models)")
-    ap.add_argument("--split", default="test", choices=["val","test"], help="Which split to evaluate for the ensemble")
-    ap.add_argument("--out", default=None, help="Output JSON file for ensemble metrics (auto if not set)")
+    ap = argparse.ArgumentParser(
+        description="Combine model probabilities into an ensemble and evaluate"
+    )
+    ap.add_argument(
+        "--outputs_dir",
+        default="results/model_outputs",
+        help="Directory containing per-model outputs",
+    )
+    ap.add_argument(
+        "--dataset", required=True, help="Dataset name suffix used in outputs, e.g., kaggle"
+    )
+    ap.add_argument(
+        "--models", nargs="*", default=["svm", "bilstm", "bert"], help="Models to ensemble"
+    )
+    ap.add_argument(
+        "--weights",
+        nargs="*",
+        type=float,
+        default=None,
+        help="Optional weights for models (same length as models)",
+    )
+    ap.add_argument(
+        "--split",
+        default="test",
+        choices=["val", "test"],
+        help="Which split to evaluate for the ensemble",
+    )
+    ap.add_argument(
+        "--out", default=None, help="Output JSON file for ensemble metrics (auto if not set)"
+    )
     args = ap.parse_args()
 
     base = Path(args.outputs_dir)
@@ -61,4 +84,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

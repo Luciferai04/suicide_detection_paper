@@ -21,8 +21,11 @@ def check_access(agreement_path: Path) -> bool:
 
 def main():
     ap = argparse.ArgumentParser(description="Secure handler for IRB-controlled UMD dataset")
-    ap.add_argument("--agreement", default="ethics/irb_documentation/umd_access_granted.txt",
-                    help="Path to a local file proving IRB approval / data use agreement")
+    ap.add_argument(
+        "--agreement",
+        default="ethics/irb_documentation/umd_access_granted.txt",
+        help="Path to a local file proving IRB approval / data use agreement",
+    )
     ap.add_argument("--out", default="data/umd/processed")
     args = ap.parse_args()
 
@@ -35,12 +38,14 @@ def main():
         audit.log_event("umd_access_denied", {})
         sys.exit(1)
 
-    out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
     # Placeholder for secure processing
     audit.log_event("umd_access_granted", {"out": str(out)})
-    print("UMD secure pipeline stub ready. Integrate JSON parsing and temporal risk pipeline once data are available.")
+    print(
+        "UMD secure pipeline stub ready. Integrate JSON parsing and temporal risk pipeline once data are available."
+    )
 
 
 if __name__ == "__main__":
     main()
-

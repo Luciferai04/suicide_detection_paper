@@ -35,8 +35,10 @@ def wait_for_completion():
         svm_done = not is_alive(SVM_PID)
         bilstm_done = not is_alive(BILSTM_PID)
         bert_done = not is_alive(BERT_PID)
-        ts = datetime.now().strftime('%H:%M:%S')
-        print(f"[{ts}] Status: SVM done={svm_done}, BiLSTM done={bilstm_done}, BERT done={bert_done}")
+        ts = datetime.now().strftime("%H:%M:%S")
+        print(
+            f"[{ts}] Status: SVM done={svm_done}, BiLSTM done={bilstm_done}, BERT done={bert_done}"
+        )
         if svm_done and bilstm_done:
             break
         time.sleep(60)
@@ -58,4 +60,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

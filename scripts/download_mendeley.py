@@ -50,8 +50,11 @@ def main():
         ok = safe_download(url, out)
         ok_any = ok_any or ok
     if not ok_any:
-        print("No files downloaded. You may need to download manually via the website due to licensing.")
+        print(
+            "No files downloaded. You may need to download manually via the website due to licensing."
+        )
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

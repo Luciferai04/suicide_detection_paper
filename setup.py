@@ -1,4 +1,3 @@
-
 from setuptools import find_packages, setup
 
 setup(
@@ -10,4 +9,3 @@ setup(
     python_requires=">=3.9",
     install_requires=[],
 )
-

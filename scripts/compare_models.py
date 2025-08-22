@@ -26,5 +26,6 @@ def main():
     else:
         print("No metrics found. Run training scripts first.")
 
+
 if __name__ == "__main__":
     main()
