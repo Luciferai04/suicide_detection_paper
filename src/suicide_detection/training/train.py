@@ -27,6 +27,7 @@ from suicide_detection.utils.seed import set_global_seed
 # Shared helpers
 # -------------------------
 
+
 def _load_configs(default_path: Optional[str], override_path: Optional[str]) -> Dict[str, Any]:
     cfg_default: Dict[str, Any] = {}
     cfg_model: Dict[str, Any] = {}
@@ -59,6 +60,7 @@ def _setup_mlflow(logger, cfg_file: Path = Path("configs/mlflow.yaml")) -> bool:
 
 
 # BiLSTM helpers factored out to reduce run_bilstm complexity
+
 
 def bilstm_build_vocab(texts, min_freq: int = 2, max_size: int = 50000):
     from collections import Counter
@@ -126,7 +128,18 @@ def bilstm_collect(model, loader, device):
     return y_true, y_prob
 
 
-def bilstm_train(model, train_loader, val_loader, device, logger, criterion, optimizer, output_dir: Path, num_epochs: int, early_patience: int):
+def bilstm_train(
+    model,
+    train_loader,
+    val_loader,
+    device,
+    logger,
+    criterion,
+    optimizer,
+    output_dir: Path,
+    num_epochs: int,
+    early_patience: int,
+):
     best_f1, patience, max_patience = 0.0, 0, early_patience
     for epoch in range(1, num_epochs + 1):
         model.train()
@@ -186,6 +199,7 @@ def bilstm_save_attention_visualizations(model, val_loader, device, output_dir: 
 
 # BERT helpers factored out to reduce run_bert complexity
 
+
 def bert_hf_metrics(eval_pred):
     logits, labels = eval_pred
     probs = torch.softmax(torch.tensor(logits), dim=-1)[:, 1].numpy()
@@ -223,7 +237,9 @@ def bert_save_outputs(trainer, val_ds, y_val, y_test, y_prob_test, X_test, outpu
         pass
 
 
-def bert_save_plots_and_fairness(trainer, val_ds, y_val, y_test, y_prob_test, output_dir: Path, groups: Optional[dict]):
+def bert_save_plots_and_fairness(
+    trainer, val_ds, y_val, y_test, y_prob_test, output_dir: Path, groups: Optional[dict]
+):
     y_val_prob_local = trainer.predict(val_ds).predictions
     y_val_prob_local = torch.softmax(torch.tensor(y_val_prob_local), dim=-1)[:, 1].numpy()
     y_val_true = np.array(y_val)
@@ -235,7 +251,9 @@ def bert_save_plots_and_fairness(trainer, val_ds, y_val, y_test, y_prob_test, ou
     # Fairness outputs if group labels provided
     if groups:
         if groups.get("val") is not None:
-            fm = fairness_metrics(np.array(y_val), np.array(y_val_prob_local), np.array(groups["val"]))
+            fm = fairness_metrics(
+                np.array(y_val), np.array(y_val_prob_local), np.array(groups["val"])
+            )
             with open(output_dir / "bert_val_fairness.json", "w") as f:
                 json.dump(fm, f, indent=2)
         if groups.get("test") is not None:
@@ -675,7 +693,6 @@ def run_bilstm(
     except Exception:
         pass
 
-
     # Optional fairness outputs using provided groups
     if groups:
         if groups.get("val") is not None:
@@ -702,6 +719,7 @@ def run_bilstm(
     def _save_bilstm_attention_visualizations():
         try:
             import matplotlib.pyplot as plt
+
             vis_dir = output_dir / "attention"
             vis_dir.mkdir(parents=True, exist_ok=True)
             count = 0
@@ -721,7 +739,9 @@ def run_bilstm(
                         plt.yticks([])
                         plt.xlabel("Token index")
                         plt.title("BiLSTM Attention Weights (sample {})".format(i))
-                        plt.savefig(vis_dir / f"val_attn_{count+i}.png", dpi=150, bbox_inches="tight")
+                        plt.savefig(
+                            vis_dir / f"val_attn_{count+i}.png", dpi=150, bbox_inches="tight"
+                        )
                         plt.close()
                     count += min(attn_w.shape[0], 5 - count)
                     if count >= 5:
@@ -916,7 +936,9 @@ def run_bert(
         # Fairness outputs if group labels provided
         if groups:
             if groups.get("val") is not None:
-                fm = fairness_metrics(np.array(y_val), np.array(y_val_prob_local), np.array(groups["val"]))
+                fm = fairness_metrics(
+                    np.array(y_val), np.array(y_val_prob_local), np.array(groups["val"])
+                )
                 with open(output_dir / "bert_val_fairness.json", "w") as f:
                     json.dump(fm, f, indent=2)
             if groups.get("test") is not None:
@@ -964,26 +986,68 @@ def _load_data(args, logger):
     return train, val, test, group_vectors
 
 
-def _run_selected_model(args, train, val, test, output_dir: Path, logger, cfg_all, group_vectors, use_cv, n_splits, ml_enabled):
+def _run_selected_model(
+    args,
+    train,
+    val,
+    test,
+    output_dir: Path,
+    logger,
+    cfg_all,
+    group_vectors,
+    use_cv,
+    n_splits,
+    ml_enabled,
+):
     """Dispatch to model-specific training and handle optional MLflow logging."""
+
     def _log_metrics(split_prefix: str, metrics_path: Path):
         if ml_enabled and metrics_path.exists():
             import json as _json
+
             m = _json.loads(metrics_path.read_text())
             for k, v in m.items() if isinstance(m, dict) else []:
                 if isinstance(v, (int, float)):
                     mlflow.log_metric(f"{split_prefix}_{k}", float(v))
 
     if args.model == "svm":
-        run_svm(train, val, test, output_dir, logger, groups=group_vectors, use_cv=use_cv, n_splits=n_splits)
+        run_svm(
+            train,
+            val,
+            test,
+            output_dir,
+            logger,
+            groups=group_vectors,
+            use_cv=use_cv,
+            n_splits=n_splits,
+        )
         _log_metrics("val", output_dir / "svm_val_metrics.json")
         _log_metrics("test", output_dir / "svm_test_metrics.json")
     elif args.model == "bilstm":
-        run_bilstm(train, val, test, output_dir, logger, groups=group_vectors, cfg_overrides=cfg_all, prefer_device=args.prefer_device)
+        run_bilstm(
+            train,
+            val,
+            test,
+            output_dir,
+            logger,
+            groups=group_vectors,
+            cfg_overrides=cfg_all,
+            prefer_device=args.prefer_device,
+        )
         _log_metrics("val", output_dir / "bilstm_val_metrics.json")
         _log_metrics("test", output_dir / "bilstm_test_metrics.json")
     elif args.model == "bert":
-        run_bert(train, val, test, output_dir, logger, model_name=args.bert_model_name, groups=group_vectors, cfg_overrides=cfg_all, prefer_device=args.prefer_device)
+        run_bert(
+            train,
+            val,
+            test,
+            output_dir,
+            logger,
+            model_name=args.bert_model_name,
+            groups=group_vectors,
+            cfg_overrides=cfg_all,
+            prefer_device=args.prefer_device,
+        )
         _log_metrics("val", output_dir / "bert_val_metrics.json")
         _log_metrics("test", output_dir / "bert_test_metrics.json")
 
